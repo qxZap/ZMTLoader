@@ -1,0 +1,8 @@
+# Ignore extracted folders and their contents
+_extracted_*/
+
+# Ignore all .pak files
+*.pak
+*.uasset
+*.ubulk
+*.uexp

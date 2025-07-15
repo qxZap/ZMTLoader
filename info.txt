@@ -1,0 +1,7 @@
+
+
+
+Lurk through all the mods.
+Extract all the mods
+Check for path conflicts (ex Engine, Cargos)
+Handle conflicts

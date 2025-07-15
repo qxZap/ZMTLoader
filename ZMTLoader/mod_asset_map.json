@@ -1,0 +1,558 @@
+{
+  "_extracted_qxZap_MoreTuning_P": [
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\13b.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\26b.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\2JZ320HP.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\C63AMG671HP.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\CATC12490HP.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\DetroidDD16_600HP.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Hemi392_525HP.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\HemiHellcat_707HP.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\HONDAV10F1.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\RB26DET276HP.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\RB26DET350HP.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\RB26DET440HP.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\S58.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\S58comp.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\S85V10505HP.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Scania770HP.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\V12_789HP.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\VolvoD17_780HP.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\VW19TDI150HP.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\WeichaiWP17H_800HP.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\13b\\high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\13b\\high2.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\13b\\idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\13b\\mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\13b\\SC_V12Engine.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\26b\\high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\26b\\idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\26b\\mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\26b\\SC_V12Engine.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\2jz\\high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\2jz\\idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\2jz\\mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\2jz\\SC_V8Engine.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\392\\high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\392\\idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\392\\mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\392\\SC_V8Engine.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\707\\high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\707\\idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\707\\mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\707\\SC_V8Engine.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\770S\\SC_Truck_04.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\770S\\Truck_04_High.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\770S\\Truck_04_Idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\770S\\Truck_04_Mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\812\\high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\812\\idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\812\\mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\812\\SC_V8Engine.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\amg\\high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\amg\\idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\amg\\mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\amg\\SC_V8Engine.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\catc12\\SC_Truck_04.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\catc12\\Truck_04_High.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\catc12\\Truck_04_Idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\catc12\\Truck_04_Mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\catc12\\jake\\JakeBrake_02.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\catc12\\jake\\SC_JakeBrake_01.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\detroit\\SC_Truck_04.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\detroit\\Truck_04_High.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\detroit\\Truck_04_Idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\detroit\\Truck_04_Mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\fh\\SC_Truck_04.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\fh\\Truck_04_High.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\fh\\Truck_04_Idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\fh\\Truck_04_Mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\hondaf1\\high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\hondaf1\\idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\hondaf1\\mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\hondaf1\\SC_V12Engine.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\LightDiesel\\LightDiesel_high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\LightDiesel\\LightDiesel_idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\LightDiesel\\LightDiesel_mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\LightDiesel\\SC_LightDiesel.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\rb26\\high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\rb26\\idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\rb26\\mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\rb26\\SC_V8Engine.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\s58\\high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\s58\\idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\s58\\mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\s58\\SC_V8Engine.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\s58comp\\high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\s58comp\\idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\s58comp\\mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\s58comp\\SC_V8Engine.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\s85\\high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\s85\\idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\s85\\mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Sound\\s85\\SC_V12Engine.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\LSD\\2WayClutchPackLSD_100_40.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Tire\\HeavyMachine_OffRoad_FrontTire.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Tire\\HeavyMachine_OffRoad_RearTire.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Tire\\PerformanceTire_01.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Tire\\PerformanceTire_10.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Tire\\PerformanceTire_15.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Tire\\PoliceTire_21.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Tire\\PoliceTire_25.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Tire\\RallyTire.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Transmission\\Ford5r55s.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Transmission\\Gatrag420g.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Transmission\\GM4l60e.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Transmission\\GM700r4.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Transmission\\GMth400.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Transmission\\MuncieM22.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Transmission\\ToyotaE153.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Transmission\\ToyotaW58.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Transmission\\TremecMagnum.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Transmission\\ZF8hp51.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\AeroParts.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\Engines.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\Headlights.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\LSD.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\VehicleParts0.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_qxZap_MoreTuning_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\Wheels.uasset",
+      "has_ubulk": false
+    }
+  ],
+  "_extracted_Z_TehsEngineSoundPack_P": [
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Bigblock_V8.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\FerrariV12.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Flat6.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\I4Miata.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\flat6\\rft_high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\flat6\\rft_idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\flat6\\rft_mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\flat6\\SC_flat6.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\i4miata\\miata_high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\i4miata\\miata_idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\i4miata\\miata_mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\i4miata\\SC_miata.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\v12ferrari\\ferrari_high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\v12ferrari\\ferrari_idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\v12ferrari\\ferrari_mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\v12ferrari\\SC_ferrari.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\v8bigblock\\bigblock_high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\v8bigblock\\bigblock_idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\v8bigblock\\bigblock_mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\v8bigblock\\SC_V8bigblock.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\TorqueCurve\\TorqueCurve_Flat6.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\DataAsset\\VehicleParts\\Engines.uasset",
+      "has_ubulk": false
+    }
+  ]
+}

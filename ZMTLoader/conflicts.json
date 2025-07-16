@@ -1,5 +1,22 @@
 {
+  "Cars/Parts/Engine/Sound/LightDiesel/LightDiesel_high.uasset": [
+    "_extracted_Pidoras_engeen_P",
+    "_extracted_qxZap_MoreTuning_P"
+  ],
+  "Cars/Parts/Engine/Sound/LightDiesel/LightDiesel_idle.uasset": [
+    "_extracted_Pidoras_engeen_P",
+    "_extracted_qxZap_MoreTuning_P"
+  ],
+  "Cars/Parts/Engine/Sound/LightDiesel/LightDiesel_mid.uasset": [
+    "_extracted_Pidoras_engeen_P",
+    "_extracted_qxZap_MoreTuning_P"
+  ],
+  "Cars/Parts/Engine/Sound/LightDiesel/SC_LightDiesel.uasset": [
+    "_extracted_Pidoras_engeen_P",
+    "_extracted_qxZap_MoreTuning_P"
+  ],
   "DataAsset/VehicleParts/Engines.uasset": [
+    "_extracted_Pidoras_engeen_P",
     "_extracted_qxZap_MoreTuning_P",
     "_extracted_Z_TehsEngineSoundPack_P"
   ]

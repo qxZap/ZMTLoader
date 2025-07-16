@@ -1,5 +1,5 @@
 # Ignore extracted folders and their contents
-_extracted_*/
+*/_extracted_*/
 
 # Ignore all .pak files
 *.pak

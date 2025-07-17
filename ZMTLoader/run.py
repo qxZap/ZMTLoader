@@ -19,6 +19,7 @@ MAPPINGS = 'MotorTown'
 EXTRACTED_MOD_PREFIX = '_extracted_'
 LOG_FILE = 'log.txt'
 TEMP_FOLDER = '_tmp_'
+MT_AES = '0xD9633F9140D5494AE4A469BDA384896BD1B9644D50D281E64ECFF4900B8E8E80'
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__)) 
 
@@ -181,6 +182,7 @@ if __name__ == "__main__":
         t = threading.Thread(target=extract_pak, args=(modFileName,))
         t.start()
         threads.append(t)
+    
 
     for t in threads:
         t.join()

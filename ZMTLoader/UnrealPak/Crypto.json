@@ -10,9 +10,9 @@
       "$type":"2",
       "Name":"null",
       "Guid":"null",
-      "Key":"Your Base64 key here"
+      "Key":"2WM/kUDVSUrkpGm9o4SJa9G5ZE1Q0oHmT8/0kAuOjoA="
    },
-   "SigningKey": null,
+   "SigningKey": "",
    "bEnablePakSigning":true,
    "bEnablePakIndexEncryption":true,
    "bEnablePakIniEncryption":true,

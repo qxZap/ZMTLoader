@@ -1,4 +1,26 @@
 {
+  "_extracted_MajasMotorWorksV2_P": [
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_MajasMotorWorksV2_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\AeroParts.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_MajasMotorWorksV2_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\Engines.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_MajasMotorWorksV2_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\Transmissions.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_MajasMotorWorksV2_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\VehicleParts0.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_MajasMotorWorksV2_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\Wheels.uasset",
+      "has_ubulk": false
+    }
+  ],
   "_extracted_Pidoras_engeen_P": [
     {
       "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Pidoras_engeen_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\DI4-75.uasset",
@@ -503,93 +525,169 @@
       "has_ubulk": false
     }
   ],
-  "_extracted_Z_TehsEngineSoundPack_P": [
+  "_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P": [
     {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Bigblock_V8.uasset",
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Bigblock_V8.uasset",
       "has_ubulk": false
     },
     {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\FerrariV12.uasset",
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Boxer4.uasset",
       "has_ubulk": false
     },
     {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Flat6.uasset",
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\FerrariV12.uasset",
       "has_ubulk": false
     },
     {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\I4Miata.uasset",
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Flat6.uasset",
       "has_ubulk": false
     },
     {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\flat6\\rft_high.uasset",
-      "has_ubulk": true
-    },
-    {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\flat6\\rft_idle.uasset",
-      "has_ubulk": true
-    },
-    {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\flat6\\rft_mid.uasset",
-      "has_ubulk": true
-    },
-    {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\flat6\\SC_flat6.uasset",
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\I4Miata.uasset",
       "has_ubulk": false
     },
     {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\i4miata\\miata_high.uasset",
-      "has_ubulk": true
-    },
-    {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\i4miata\\miata_idle.uasset",
-      "has_ubulk": true
-    },
-    {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\i4miata\\miata_mid.uasset",
-      "has_ubulk": true
-    },
-    {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\i4miata\\SC_miata.uasset",
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\MercedesV8.uasset",
       "has_ubulk": false
     },
     {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\v12ferrari\\ferrari_high.uasset",
-      "has_ubulk": true
-    },
-    {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\v12ferrari\\ferrari_idle.uasset",
-      "has_ubulk": true
-    },
-    {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\v12ferrari\\ferrari_mid.uasset",
-      "has_ubulk": true
-    },
-    {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\v12ferrari\\SC_ferrari.uasset",
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\V10.uasset",
       "has_ubulk": false
     },
     {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\v8bigblock\\bigblock_high.uasset",
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\boxer4\\boxer4_high.uasset",
       "has_ubulk": true
     },
     {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\v8bigblock\\bigblock_idle.uasset",
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\boxer4\\boxer4_idle.uasset",
       "has_ubulk": true
     },
     {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\v8bigblock\\bigblock_mid.uasset",
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\boxer4\\boxer4_mid.uasset",
       "has_ubulk": true
     },
     {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\Sound\\v8bigblock\\SC_V8bigblock.uasset",
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\boxer4\\SC_boxer4.uasset",
       "has_ubulk": false
     },
     {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\Cars\\Parts\\Engine\\TorqueCurve\\TorqueCurve_Flat6.uasset",
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\flat6\\rft_high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\flat6\\rft_idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\flat6\\rft_mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\flat6\\SC_flat6.uasset",
       "has_ubulk": false
     },
     {
-      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPack_P\\DataAsset\\VehicleParts\\Engines.uasset",
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\i4miata\\miata_high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\i4miata\\miata_idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\i4miata\\miata_mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\i4miata\\SC_miata.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\v10\\SC_v10.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\v10\\v10_high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\v10\\v10_idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\v10\\v10_mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\v12ferrari\\ferrari_high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\v12ferrari\\ferrari_idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\v12ferrari\\ferrari_mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\v12ferrari\\SC_ferrari.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\v8bigblock\\bigblock_high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\v8bigblock\\bigblock_idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\v8bigblock\\bigblock_mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\v8bigblock\\SC_V8bigblock.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\v8mercedes\\SC_v8mercedes.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\v8mercedes\\v8mercedes_high.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\v8mercedes\\v8mercedes_idle.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\Sound\\v8mercedes\\v8mercedes_mid.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\TorqueCurve\\TorqueCurve_boxer4.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\TorqueCurve\\TorqueCurve_Flat6.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\TorqueCurve\\TorqueCurve_v10.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\Cars\\Parts\\Engine\\TorqueCurve\\TorqueCurve_v8mercedes.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\DataAsset\\VehicleParts\\Engines.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\DataAsset\\VehicleParts\\VehicleParts0.uasset",
       "has_ubulk": false
     }
   ]

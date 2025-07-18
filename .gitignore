@@ -2,6 +2,9 @@
 */_extracted_*/
 ZMTLoader/*_P
 ZMTLoader/BASE_GAME_DATA/
+ZMTLoader/log.txt
+ZMTLoader/conflicts.json
+ZMTLoader/mod_asset_map.json
 
 # Ignore all .pak files
 *.pak

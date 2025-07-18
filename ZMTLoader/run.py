@@ -17,7 +17,6 @@ MAPPINGS = 'MotorTown'
 LOG_FILE = 'log.txt'
 MT_AES = '0xD9633F9140D5494AE4A469BDA384896BD1B9644D50D281E64ECFF4900B8E8E80'
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-BASE_PAK_FILE = "MotorTown-Windows.pak" #make it dynamic to be used along with the base files
 BASE_GAME_DATA = 'BASE_GAME_DATA'
 
 KNOWN_CONFLICTS = {
@@ -313,16 +312,15 @@ def extract_single_asset(pak_file, asset_path, has_ubulk=False, dest_dir="."):
 
     asset_no_ext = os.path.splitext(asset_path)[0]  # Remove any accidental extension
 
-    for ext in [".uasset", ".uexp"]:
-        pak_entry = asset_no_ext + ext  # Full path inside PAK
-        out_file = os.path.join(dest_dir, os.path.basename(asset_no_ext) + ext)
-        cmd = f'cmd /c "{REPACK_PATH} -a {MT_AES} get {pak_file} {pak_entry} > {out_file}"'
-        os.system(cmd)
+    for ext in [".uasset", ".uexp", ".ubulk"]:
+        if ext == ".ubulk" and not has_ubulk:
+            break
 
-    if has_ubulk:
-        ubulk_entry = asset_no_ext + ".ubulk"
-        ubulk_out = os.path.join(dest_dir, os.path.basename(asset_no_ext) + ".ubulk")
-        cmd = f'cmd /c "{REPACK_PATH} -a {MT_AES} get {pak_file} {ubulk_entry} > {ubulk_out}"'
+        pak_entry = asset_no_ext + ext  # Full path inside PAK
+        out_file = os.path.join(dest_dir, pak_entry)  # Preserve folder structure
+        os.makedirs(os.path.dirname(out_file), exist_ok=True)  # Ensure dirs exist
+
+        cmd = f'cmd /c "{REPACK_PATH} -a {MT_AES} get {pak_file} {pak_entry} > {out_file}"'
         os.system(cmd)
 
 if __name__ == "__main__":
@@ -380,24 +378,54 @@ if __name__ == "__main__":
 
         print(f"Fix mod folder ensured at: {FIX_MOD_PATH}")
 
-        # Merge known conflicts using base and mod JSONs
-        for conflict_rel_path, conflict_type in KNOWN_CONFLICTS.items():
-            mod_json_files = []
+        # Use base pak file from base_files list
+        if len(base_files) != 1:
+            print(f"Warning: Expected exactly one base pak file but found {len(base_files)}. Cannot extract base assets reliably.")
+        else:
+            base_pak = base_files[0]
 
-            for mod_folder in conflicts.get(conflict_rel_path, []):
-                # FIX: Inject "MotorTown/Content" to reach real extracted path
-                mod_uasset_path = os.path.join(mod_folder, 'MotorTown', 'Content', conflict_rel_path)
-                mod_json_path = mod_uasset_path.replace(".uasset", ".json")
-                run_uasset_tojson(mod_uasset_path)
-                if os.path.exists(mod_json_path):
-                    mod_json_files.append(mod_json_path)
+            # For each known conflict, extract base assets first, then convert and merge
+            for conflict_rel_path, conflict_type in KNOWN_CONFLICTS.items():
+                # Extract base asset (.uasset and optionally .ubulk)
+                has_ubulk = False  # Assume False, can be refined if needed
+                # Check if ubulk file exists in base pak or mod asset lookup, rough check:
+                base_asset_name = conflict_rel_path.replace('.uasset', '')
+                base_ubulk_path = base_asset_name + '.ubulk'
+                # You could enhance this check if you want to confirm ubulk presence
 
-            base_json_path = os.path.join(BASE_GAME_DATA, conflict_rel_path).replace(".uasset", ".json")
-            output_json_path = os.path.join(FIX_MOD_PATH, conflict_rel_path).replace(".uasset", ".json")
+                # Extract vanilla asset files to BASE_GAME_DATA folder
+                extract_single_asset(base_pak, 'MotorTown/Content/'+conflict_rel_path, has_ubulk, dest_dir=BASE_GAME_DATA)
 
-            if os.path.exists(base_json_path) and mod_json_files:
-                os.makedirs(os.path.dirname(output_json_path), exist_ok=True)
-                solve_conflict_with_base(base_json_path, mod_json_files, conflict_type, output_json_path)
-                print(f"[{conflict_type}] Conflict merged -> {output_json_path}")
-            else:
-                print(f"[{conflict_type}] Skipped. Missing base or mod JSONs.")
+                # After extraction, run json conversion on base asset
+                base_uasset_full_path = os.path.join(BASE_GAME_DATA, conflict_rel_path)
+                run_uasset_tojson(base_uasset_full_path)
+
+                mod_json_files = []
+                for mod_folder in conflicts.get(conflict_rel_path, []):
+                    mod_uasset_path = os.path.join(mod_folder, 'MotorTown', 'Content', conflict_rel_path)
+                    mod_json_path = mod_uasset_path.replace(".uasset", ".json")
+                    run_uasset_tojson(mod_uasset_path)
+                    if os.path.exists(mod_json_path):
+                        mod_json_files.append(mod_json_path)
+
+                base_uasset_path = os.path.join(BASE_GAME_DATA, 'MotorTown', 'Content',  conflict_rel_path)
+                base_json_path = base_uasset_path.replace(".uasset", ".json")
+                run_uasset_tojson(base_uasset_path)
+                output_json_path = os.path.join(FIX_MOD_PATH, conflict_rel_path).replace(".uasset", ".json")
+
+                if os.path.exists(base_json_path) and mod_json_files:
+                    os.makedirs(os.path.dirname(output_json_path), exist_ok=True)
+                    solve_conflict_with_base(base_json_path, mod_json_files, conflict_type, output_json_path)
+                    print(f"[{conflict_type}] Conflict merged -> {output_json_path}")
+                else:
+                    print(f"[{conflict_type}] Skipped. Missing base or mod JSONs.")
+
+        for mod_folder in mod_asset_map.keys():
+            abs_mod_folder = os.path.abspath(mod_folder)
+            if os.path.exists(abs_mod_folder):
+                shutil.rmtree(abs_mod_folder)
+
+        for base_file in base_files:
+            os.remove(base_file)
+
+                

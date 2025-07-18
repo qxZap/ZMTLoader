@@ -1,41 +1,41 @@
 {
   "DataAsset/VehicleParts/AeroParts.uasset": [
-    "_extracted_MajasMotorWorksV2_P",
-    "_extracted_qxZap_MoreTuning_P"
+    "MajasMotorWorksV2_P",
+    "qxZap_MoreTuning_P"
   ],
   "DataAsset/VehicleParts/Engines.uasset": [
-    "_extracted_MajasMotorWorksV2_P",
-    "_extracted_Pidoras_engeen_P",
-    "_extracted_qxZap_MoreTuning_P",
-    "_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P"
+    "MajasMotorWorksV2_P",
+    "Pidoras_engeen_P",
+    "qxZap_MoreTuning_P",
+    "Z_TehsEngineSoundPackCompatibilityMoreTuning_P"
   ],
   "DataAsset/VehicleParts/Transmissions.uasset": [
-    "_extracted_MajasMotorWorksV2_P",
-    "_extracted_Pidoras_engeen_P"
+    "MajasMotorWorksV2_P",
+    "Pidoras_engeen_P"
   ],
   "DataAsset/VehicleParts/VehicleParts0.uasset": [
-    "_extracted_MajasMotorWorksV2_P",
-    "_extracted_qxZap_MoreTuning_P",
-    "_extracted_Z_TehsEngineSoundPackCompatibilityMoreTuning_P"
+    "MajasMotorWorksV2_P",
+    "qxZap_MoreTuning_P",
+    "Z_TehsEngineSoundPackCompatibilityMoreTuning_P"
   ],
   "DataAsset/VehicleParts/Wheels.uasset": [
-    "_extracted_MajasMotorWorksV2_P",
-    "_extracted_qxZap_MoreTuning_P"
+    "MajasMotorWorksV2_P",
+    "qxZap_MoreTuning_P"
   ],
   "Cars/Parts/Engine/Sound/LightDiesel/LightDiesel_high.uasset": [
-    "_extracted_Pidoras_engeen_P",
-    "_extracted_qxZap_MoreTuning_P"
+    "Pidoras_engeen_P",
+    "qxZap_MoreTuning_P"
   ],
   "Cars/Parts/Engine/Sound/LightDiesel/LightDiesel_idle.uasset": [
-    "_extracted_Pidoras_engeen_P",
-    "_extracted_qxZap_MoreTuning_P"
+    "Pidoras_engeen_P",
+    "qxZap_MoreTuning_P"
   ],
   "Cars/Parts/Engine/Sound/LightDiesel/LightDiesel_mid.uasset": [
-    "_extracted_Pidoras_engeen_P",
-    "_extracted_qxZap_MoreTuning_P"
+    "Pidoras_engeen_P",
+    "qxZap_MoreTuning_P"
   ],
   "Cars/Parts/Engine/Sound/LightDiesel/SC_LightDiesel.uasset": [
-    "_extracted_Pidoras_engeen_P",
-    "_extracted_qxZap_MoreTuning_P"
+    "Pidoras_engeen_P",
+    "qxZap_MoreTuning_P"
   ]
 }

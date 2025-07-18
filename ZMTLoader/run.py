@@ -1,7 +1,3 @@
-# .\UnrealPak\UnrealPak.exe .\Z_TehsEngineSoundPack_P.pak -Extract Z_TehsEngineSoundPack_P 
-# .\UAssetGUI.exe tojson .\Z_TehsEngineSoundPack_P\Cars\Parts\Engine\Bigblock_V8.uasset Bigblock_V8.json VER_UE5_5 MotorTown
-# List mods
-
 import os
 import json
 import shutil
@@ -10,101 +6,247 @@ import subprocess
 import threading
 from multiprocessing import cpu_count
 
+# Constants
 num_threads = max(1, cpu_count() // 2)
 DEFAULT_PATH_MODS = '..'
-UNREAL_PAK_PATH = """UnrealPak/UnrealPak.exe"""
+UNREAL_PAK_PATH = "UnrealPak/UnrealPak.exe"
 UASSET_GUI_PATH = 'UAssetGUI.exe'
+REPACK_PATH = "repak.exe"
 UE_VER = 'VER_UE5_5'
 MAPPINGS = 'MotorTown'
-EXTRACTED_MOD_PREFIX = '_extracted_'
 LOG_FILE = 'log.txt'
-TEMP_FOLDER = '_tmp_'
 MT_AES = '0xD9633F9140D5494AE4A469BDA384896BD1B9644D50D281E64ECFF4900B8E8E80'
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__)) 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_PAK_FILE = "MotorTown-Windows.pak" #make it dynamic to be used along with the base files
+BASE_GAME_DATA = 'BASE_GAME_DATA'
 
 KNOWN_CONFLICTS = {
-    'DataAsset/VehicleParts/Engines.uasset':'engine_merge'
+    'DataAsset/VehicleParts/Engines.uasset': 'engine_merge'
 }
 
 MT_PATH_CONTENT = ['MotorTown', 'Content']
+
+
+
+
+
+
+MT_ASSET_MAP = {
+    'EngineAsset':'MHEngineDataAsset',
+    'TransmissionAsset':'MTTransmissionDataAsset',
+    'LSDAsset':'MTLSDDataAsset',
+    # '':'MTTirePhysicsDataAsset' #for tires is way different
+}
+
+MT_PART_TYPES = {
+    # Again for tires is different
+    'Engine' : 'EngineAsset',
+    'Transmission' : 'TransmissionAsset',
+    'LSD' : 'LSDAsset',
+}
+
+def load_json(path_to_json):
+    json_load = {}
+    with open(path_to_json) as f:
+        json_load = json.loads(f.read())
+    return json_load
+
+def new_package_import(package_path):
+    return {
+      "$type": "UAssetAPI.Import, UAssetAPI",
+      "ObjectName": package_path,
+      "OuterIndex": 0,
+      "ClassPackage": "/Script/CoreUObject",
+      "ClassName": "Package",
+      "PackageName": None,
+      "bImportOptional": False
+    }
+
+def new_object_import(object_name, index, class_name):
+    return {
+      "$type": "UAssetAPI.Import, UAssetAPI",
+      "ObjectName": object_name,
+      "OuterIndex": index,
+      "ClassPackage": "/Script/MotorTown",
+      "ClassName": class_name,
+      "PackageName": None,
+      "bImportOptional": False
+    }
+
+def solve_conflict_with_base(base_file_path, mod_files_paths, conflict_type, output_path):
+    base_json = load_json(base_file_path)
+    final_json = load_json(base_file_path)
+    final_parts = []
+
+    mods_json = []
+    for mod_files_path in mod_files_paths:
+        mods_json.append(load_json(mod_files_path))
+    
+    for part in base_json.get('Exports')[0].get('Table').get('Data'):
+        part_name = part.get('Name')
+        part_to_add = part
+        for mod_json in mods_json:
+            for mod_part in mod_json.get('Exports')[0].get('Table').get('Data'):
+                mod_part_name = mod_part.get('Name')
+                if mod_part_name == part_name:
+                    if part!=mod_part:
+                        part_to_add = mod_part
+        final_parts.append(part_to_add)
+    
+    final_json['Exports'][0]['Table']['Data'] = final_parts
+
+    final_names = final_json.get('NameMap')
+    for mod_json in mods_json:
+        for mod_name_map_component in mod_json.get('NameMap'):
+            if mod_name_map_component not in final_names:
+                final_names.append(mod_name_map_component)
+    final_json['NameMap'] = final_names
+
+    new_parts = {
+
+    }
+
+    for mod_json in mods_json:
+        mod_import_map = mod_json.get('Imports')
+        for mod_part in mod_json.get('Exports')[0].get('Table').get('Data'):
+            mod_part_name = mod_part.get('Name')
+
+            is_new_part = True
+            for part in base_json.get('Exports')[0].get('Table').get('Data'):
+                part_name = part.get('Name')
+                if part_name == mod_part_name:
+                    is_new_part = False
+            
+            if is_new_part:
+                new_parts[mod_part_name] = {}
+                new_parts[mod_part_name]['Part'] = mod_part
+                partType = None
+                partTypeAset = None
+                for row_data in mod_part.get('Value'):
+
+                    row_name = row_data.get('Name')
+                    row_val = row_data.get('Value')
+
+                    if row_name == "PartType":
+                        partType = row_val
+                        partTypeAset = MT_PART_TYPES[partType]
+
+                    if row_name == partTypeAset:
+                        import_obj = mod_import_map[(-1)*row_val-1]
+                        import_obj_pack_obj =  mod_import_map[(-1)*import_obj.get('OuterIndex')-1]
+
+                        new_parts[mod_part_name]['ObjectName'] = import_obj.get('ObjectName')
+                        new_parts[mod_part_name]['ObjectPackPath'] = import_obj_pack_obj.get('ObjectName')
+                        new_parts[mod_part_name]['PartTypeAsset'] = partTypeAset                 
+
+    index = len(final_json.get('Imports'))+1
+    final_imports = final_json.get('Imports')
+    final_serialization = final_json['Exports'][0]['CreateBeforeSerializationDependencies']
+
+    for new_part in new_parts:
+        asset_index = (-1)*(index+1)
+
+        part = new_parts[new_part]['Part']
+
+        partType = new_parts[new_part]['PartTypeAsset']
+
+        for row_data in part['Value']:
+            row_name = row_data.get('Name')
+            row_val = row_data.get('Value')
+            
+            if row_name == partType:
+                row_data['Value'] = asset_index+1
+                final_serialization.append(asset_index+1)
+    
+        final_imports.append(new_object_import(new_parts[new_part]['ObjectName'], asset_index, MT_ASSET_MAP[partType])) 
+        final_imports.append(new_package_import(new_parts[new_part]['ObjectPackPath'])) 
+        
+        final_parts.append(part)
+
+        index+=2
+
+    final_json['Exports'][0]['CreateBeforeSerializationDependencies'] = final_serialization
+    final_json['Exports'][0]['Table']['Data'] = final_parts
+
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(json.dumps(final_json, indent=4))
+
+
+
+
+
+
+
+
+
+
+
 
 def has_motortown_content_folder(base_path):
     motor_town_path = os.path.join(base_path, MT_PATH_CONTENT[0])
     content_path = os.path.join(motor_town_path, MT_PATH_CONTENT[1])
     return os.path.isdir(motor_town_path) and os.path.isdir(content_path)
 
-def to_abs_path(path, base_dir=None):
-    """
-    Convert a possibly relative path to an absolute path.
-    If base_dir is None, uses current working directory.
-    """
-    if base_dir is None:
-        base_dir = os.getcwd()  # or set to your script folder if preferred
 
+def to_abs_path(path, base_dir=None):
+    if base_dir is None:
+        base_dir = os.getcwd()
     if not os.path.isabs(path):
         return os.path.abspath(os.path.join(base_dir, path))
     return path
 
+
 def copy_file_fixed(src_path, dest_path, base_dir=None):
     src_abs = to_abs_path(src_path, base_dir)
     dest_abs = to_abs_path(dest_path, base_dir)
-
     os.makedirs(os.path.dirname(dest_abs), exist_ok=True)
     shutil.copy2(src_abs, dest_abs)
 
+
 def getFiles(path):
-    return [file for file in os.listdir(path) if '.pak' in file]
+    return [file for file in os.listdir(path) if file.endswith('.pak')]
+
 
 def getModFiles(path):
-    files = getFiles(path)
-    return [file for file in files if file.endswith('_P.pak')]
+    return [file for file in getFiles(path) if file.endswith('_P.pak')]
+
 
 def getBaseFiles(path):
-    files = getFiles(path)
-    return [file for file in files if not file.endswith('_P.pak')]
+    return [file for file in getFiles(path) if not file.endswith('_P.pak')]
 
 
-def extractCommand(unrealPakPath, targetPak, destinationFolder):
-    return [
-        unrealPakPath,
-        targetPak,
-        "-Extract",
-        destinationFolder
-    ]
+def extractCommand(repakPath, targetPak):
+    return [repakPath, "unpack", targetPak]
+
 
 def extract_pak(modFileName):
-    pak_path = os.path.join(DEFAULT_PATH_MODS, modFileName)
-    extract_folder_name = EXTRACTED_MOD_PREFIX + modFileName.replace('.pak', '')
-    dest_folder = os.path.join("UnrealPak", extract_folder_name)
-    final_dest = os.path.abspath(extract_folder_name)
+    pak_work_path = os.path.join(os.getcwd(), modFileName)
 
-    cmd = extractCommand(UNREAL_PAK_PATH, pak_path, extract_folder_name)
-    log_file = os.path.join("log.txt")
+    cmd = f'cmd /c "{REPACK_PATH} unpack {modFileName}"'
+    log_file = os.path.join(LOG_FILE)
 
     with open(log_file, "a") as log:
         try:
-            log.write(f"[{modFileName}] Running: {' '.join(cmd)}\n")
-            subprocess.run(cmd, check=True, stdout=log, stderr=log)
+            log.write(f"[{modFileName}] Running: {cmd}\n")
+            result = os.system(cmd)
+            if result != 0:
+                raise RuntimeError(f"Command failed with exit code {result}")
             log.write(f"[{modFileName}] Extraction Done.\n")
 
-            if os.path.exists(dest_folder):
-                if os.path.exists(final_dest):
-                    shutil.rmtree(final_dest)
-                shutil.move(dest_folder, final_dest)
-                log.write(f"[{modFileName}] Moved to: {final_dest}\n\n")
-            else:
-                log.write(f"[{modFileName}] Extracted folder not found: {dest_folder}\n\n")
+            if os.path.exists(pak_work_path):
+                os.remove(pak_work_path)
+                log.write(f"[{modFileName}] Removed copied pak file in working dir.\n")
 
-        except subprocess.CalledProcessError as e:
-            log.write(f"[{modFileName}] Failed with error code {e.returncode}\n\n")
+        except Exception as e:
+            log.write(f"[{modFileName}] Failed: {str(e)}\n\n")
+
 
 def list_assets_by_mod(modnames):
     result = {}
 
     for modname in modnames:
-        mod_key = EXTRACTED_MOD_PREFIX + modname.replace(".pak", "")
-        mod_path = os.path.abspath(mod_key)
+        mod_folder = os.path.splitext(modname)[0]
+        mod_path = os.path.abspath(mod_folder)
         assets = []
 
         for root, dirs, files in os.walk(mod_path):
@@ -119,21 +261,21 @@ def list_assets_by_mod(modnames):
                         "has_ubulk": has_ubulk
                     })
 
-        result[mod_key] = assets
+        result[mod_folder] = assets
 
     return result
 
+
 def normalize_path(path):
-    parts = path.replace('\\','/').split('/')
-    prefixes_to_strip = ['MotorTown', 'Content']
-    for prefix in prefixes_to_strip:
+    parts = path.replace('\\', '/').split('/')
+    for prefix in MT_PATH_CONTENT:
         if parts and parts[0] == prefix:
             parts.pop(0)
     return '/'.join(parts)
 
+
 def find_conflicts(mod_asset_map):
     file_map = {}
-
     for mod_key, assets in mod_asset_map.items():
         mod_root = os.path.abspath(mod_key)
         for asset in assets:
@@ -142,13 +284,12 @@ def find_conflicts(mod_asset_map):
             rel_path = normalize_path(rel_path)
             file_map.setdefault(rel_path, []).append(mod_key)
 
-    conflicts = {rel_path: mods for rel_path, mods in file_map.items() if len(mods) > 1}
+    return {rel_path: mods for rel_path, mods in file_map.items() if len(mods) > 1}
 
-    return conflicts
 
 def run_uasset_tojson(uasset_path):
     base_name = os.path.splitext(os.path.basename(uasset_path))[0]
-    json_output = uasset_path.replace('.uasset','.json')
+    json_output = uasset_path.replace('.uasset', '.json')
     cmd = [
         UASSET_GUI_PATH,
         'tojson',
@@ -167,22 +308,42 @@ def run_uasset_tojson(uasset_path):
             log.write(f"[UAssetGUI] Failed {uasset_path} with code {e.returncode}\n")
 
 
+def extract_single_asset(pak_file, asset_path, has_ubulk=False, dest_dir="."):
+    os.makedirs(dest_dir, exist_ok=True)
+
+    asset_no_ext = os.path.splitext(asset_path)[0]  # Remove any accidental extension
+
+    for ext in [".uasset", ".uexp"]:
+        pak_entry = asset_no_ext + ext  # Full path inside PAK
+        out_file = os.path.join(dest_dir, os.path.basename(asset_no_ext) + ext)
+        cmd = f'cmd /c "{REPACK_PATH} -a {MT_AES} get {pak_file} {pak_entry} > {out_file}"'
+        os.system(cmd)
+
+    if has_ubulk:
+        ubulk_entry = asset_no_ext + ".ubulk"
+        ubulk_out = os.path.join(dest_dir, os.path.basename(asset_no_ext) + ".ubulk")
+        cmd = f'cmd /c "{REPACK_PATH} -a {MT_AES} get {pak_file} {ubulk_entry} > {ubulk_out}"'
+        os.system(cmd)
+
 if __name__ == "__main__":
     mods = getModFiles(DEFAULT_PATH_MODS)
     base_files = getBaseFiles(DEFAULT_PATH_MODS)
 
-    num_threads = max(1, cpu_count() // 2)
-    print(f"Using {num_threads} threads for extraction.")
+    print("Copying all .pak files to working directory...")
+    for pak in mods + base_files:
+        src = os.path.join(DEFAULT_PATH_MODS, pak)
+        dst = os.path.join(os.getcwd(), pak)
+        if os.path.abspath(src) != os.path.abspath(dst):
+            shutil.copy2(src, dst)
 
+    print(f"Using {num_threads} threads for extraction.")
     threads = []
     for modFileName in mods:
         while threading.active_count() - 1 >= num_threads:
             pass
-
         t = threading.Thread(target=extract_pak, args=(modFileName,))
         t.start()
         threads.append(t)
-    
 
     for t in threads:
         t.join()
@@ -190,53 +351,53 @@ if __name__ == "__main__":
     print("All mod extractions completed.")
 
     mod_asset_map = list_assets_by_mod(mods)
-
     with open("mod_asset_map.json", "w") as f:
         json.dump(mod_asset_map, f, indent=2)
 
     print("Asset map written to mod_asset_map.json.")
 
     conflicts = find_conflicts(mod_asset_map)
-
     with open("conflicts.json", "w") as f:
         json.dump(conflicts, f, indent=2)
 
     if conflicts:
         print(f"Conflicts found: {len(conflicts)}. See conflicts.json for more details")
-        for conflict in conflicts:
-            if conflict in KNOWN_CONFLICTS:
-                conflict_solution = KNOWN_CONFLICTS[conflict]
 
-                conflict_actors = conflicts[conflict]
+        extracted_conflicts = set()
 
-                for conflict_actor in conflict_actors:
-                    actor_has_motortown_content_folder = has_motortown_content_folder(conflict_actor)
+        # Flatten mod_asset_map to {relative_path: has_ubulk}
+        mod_asset_lookup = {}
+        for mod_folder, assets in mod_asset_map.items():
+            mod_root = os.path.abspath(mod_folder)
+            for asset in assets:
+                rel_path = os.path.relpath(asset["uasset"], mod_root).replace("\\", "/")
+                normalized = normalize_path(rel_path)
+                mod_asset_lookup[normalized] = asset["has_ubulk"]
 
-                    uasset_path = conflict_actor+'/'+conflict
-                    if actor_has_motortown_content_folder:
-                        uasset_path = conflict_actor+'/'+MT_PATH_CONTENT[0]+'/'+MT_PATH_CONTENT[1]+'/'+conflict
+        FIX_MOD_NAME = 'ZZZZ_ZMT_Modpack_Fix_P'
+        FIX_MOD_PATH = os.path.join(os.getcwd(), FIX_MOD_NAME)
+        os.makedirs(FIX_MOD_PATH, exist_ok=True)
 
-                    run_uasset_tojson(uasset_path)
+        print(f"Fix mod folder ensured at: {FIX_MOD_PATH}")
 
+        # Merge known conflicts using base and mod JSONs
+        for conflict_rel_path, conflict_type in KNOWN_CONFLICTS.items():
+            mod_json_files = []
 
-        # run_uasset_tojson
-        # print(f"Conflicts found: {len(conflicts)}. See conflicts.json")
+            for mod_folder in conflicts.get(conflict_rel_path, []):
+                # FIX: Inject "MotorTown/Content" to reach real extracted path
+                mod_uasset_path = os.path.join(mod_folder, 'MotorTown', 'Content', conflict_rel_path)
+                mod_json_path = mod_uasset_path.replace(".uasset", ".json")
+                run_uasset_tojson(mod_uasset_path)
+                if os.path.exists(mod_json_path):
+                    mod_json_files.append(mod_json_path)
 
-        # uasset_tasks = []
-        # for rel_path, mod_keys in conflicts.items():
-        #     for mod_key in mod_keys:
-        #         mod_root = os.path.abspath(mod_key)
-        #         uasset_full_path = os.path.join(mod_root, rel_path)
-        #         if os.path.exists(uasset_full_path):
-        #             uasset_tasks.append(uasset_full_path)
+            base_json_path = os.path.join(BASE_GAME_DATA, conflict_rel_path).replace(".uasset", ".json")
+            output_json_path = os.path.join(FIX_MOD_PATH, conflict_rel_path).replace(".uasset", ".json")
 
-        # for uasset_path in uasset_tasks:
-        #     # Optional: skip if .ubulk is expected but missing
-        #     ubulk_path = uasset_path.replace('.uasset', '.ubulk')
-        #     if os.path.exists(ubulk_path) or not uasset_path.endswith('.uasset'):
-        #         run_uasset_tojson(uasset_path)
-        #     else:
-        #         with open(LOG_FILE, "a") as log:
-        #             log.write(f"[SKIP] Missing .ubulk for {uasset_path}, skipping.\n")
-    else:
-        print("No conflicts found.")
+            if os.path.exists(base_json_path) and mod_json_files:
+                os.makedirs(os.path.dirname(output_json_path), exist_ok=True)
+                solve_conflict_with_base(base_json_path, mod_json_files, conflict_type, output_json_path)
+                print(f"[{conflict_type}] Conflict merged -> {output_json_path}")
+            else:
+                print(f"[{conflict_type}] Skipped. Missing base or mod JSONs.")

@@ -1,5 +1,7 @@
 # Ignore extracted folders and their contents
 */_extracted_*/
+ZMTLoader/*_P
+ZMTLoader/BASE_GAME_DATA/
 
 # Ignore all .pak files
 *.pak

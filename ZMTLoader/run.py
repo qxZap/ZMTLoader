@@ -427,5 +427,7 @@ if __name__ == "__main__":
 
         for base_file in base_files:
             os.remove(base_file)
+        
+        shutil.rmtree(BASE_GAME_DATA)
 
                 

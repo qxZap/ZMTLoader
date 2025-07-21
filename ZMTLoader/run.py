@@ -453,6 +453,19 @@ if __name__ == "__main__":
     mods = getModFiles(DEFAULT_PATH_MODS)
     base_files = getBaseFiles(DEFAULT_PATH_MODS)
 
+    previous_shas = load_file_shas()
+    shas = {}
+    threads = []
+    for modFileName in mods:
+        shas[modFileName] = get_file_sha256('../'+modFileName)
+    
+    if shas == previous_shas:
+        print("ZMT: Mods have not changed. Game will now start")
+        start_game()
+        sys.exit(1)
+    else:
+        write_file_shas(shas)
+
     print("Copying all .pak files to working directory...")
     for pak in mods + base_files:
         src = os.path.join(DEFAULT_PATH_MODS, pak)
@@ -460,22 +473,8 @@ if __name__ == "__main__":
         if os.path.abspath(src) != os.path.abspath(dst):
             shutil.copy2(src, dst)
 
-    print(f"Using {num_threads} threads for extraction.")
-    previous_shas = load_file_shas()
-    shas = {}
-    threads = []
-    for modFileName in mods:
-        shas[modFileName] = get_file_sha256(modFileName)
+    print(f"Using {num_threads} threads for extraction.")    
     
-    if shas == previous_shas:
-        print("ZMT: Mods have not changed. Game will now start")
-        remove_mods(mods)
-        remove_mods(base_files)
-        start_game()
-        sys.exit(1)
-    else:
-        write_file_shas(shas)
-
     for modFileName in mods:
         while threading.active_count() - 1 >= num_threads:
             pass

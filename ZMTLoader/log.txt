@@ -76,3 +76,214 @@ Unhandled exception. System.IO.DirectoryNotFoundException: Could not find a part
 [UAssetGUI] Created JSON for BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Engines.uasset
 [UAssetGUI] Running: UAssetGUI.exe fromjson ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/Engines.json ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/Engines.uasset MotorTown
 [UAssetGUI] Created Uasset for ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/Engines.json
+[Z_AnotherHeadlightmod_P.pak] Running: cmd /c "repak.exe unpack Z_AnotherHeadlightmod_P.pak"
+[Z_AnotherHeadlightmod_P.pak] Extraction Done.
+[Z_AnotherHeadlightmod_P.pak] Removed copied pak file in working dir.
+[MajasMotorWorksV2_P.pak] Running: cmd /c "repak.exe unpack MajasMotorWorksV2_P.pak"
+[MajasMotorWorksV2_P.pak] Extraction Done.
+[MajasMotorWorksV2_P.pak] Removed copied pak file in working dir.
+[Pidoras_engeen_P.pak] Running: cmd /c "repak.exe unpack Pidoras_engeen_P.pak"
+[Pidoras_engeen_P.pak] Extraction Done.
+[Pidoras_engeen_P.pak] Removed copied pak file in working dir.
+[qxZap_MoreTuning_P.pak] Running: cmd /c "repak.exe unpack qxZap_MoreTuning_P.pak"
+[qxZap_MoreTuning_P.pak] Extraction Done.
+[qxZap_MoreTuning_P.pak] Removed copied pak file in working dir.
+[Z_TehsEngineSoundPackCompatibilityMoreTuning_P.pak] Running: cmd /c "repak.exe unpack Z_TehsEngineSoundPackCompatibilityMoreTuning_P.pak"
+[Z_TehsEngineSoundPackCompatibilityMoreTuning_P.pak] Extraction Done.
+[Z_TehsEngineSoundPackCompatibilityMoreTuning_P.pak] Removed copied pak file in working dir.
+Unhandled exception. System.IO.DirectoryNotFoundException: Could not find a part of the path 'D:\MT\ZMTLoader\ZMTLoader\BASE_GAME_DATA\DataAsset\VehicleParts\Engines.uasset'.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.File.Open(String path, FileMode mode, FileAccess access)
+   at UAssetAPI.UAsset.PathToStream(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 476
+   at UAssetAPI.UAsset.PathToReader(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 514
+   at UAssetAPI.UAsset..ctor(String path, EngineVersion engineVersion, Usmap mappings, CustomSerializationFlags customSerializationFlags) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 2997
+   at UAssetGUI.Program.Main() in C:\Users\hyper\git\UAssetGUI\UAssetGUI\Program.cs:line 47
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\DataAsset/VehicleParts/Engines.uasset BASE_GAME_DATA\DataAsset/VehicleParts/Engines.json VER_UE5_5 MotorTown
+[UAssetGUI] Failed BASE_GAME_DATA\DataAsset/VehicleParts/Engines.uasset with code 3762504530
+[UAssetGUI] Running: UAssetGUI.exe tojson MajasMotorWorksV2_P\MotorTown\Content\DataAsset/VehicleParts/Engines.uasset MajasMotorWorksV2_P\MotorTown\Content\DataAsset/VehicleParts/Engines.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for MajasMotorWorksV2_P\MotorTown\Content\DataAsset/VehicleParts/Engines.uasset
+[UAssetGUI] Running: UAssetGUI.exe tojson Pidoras_engeen_P\MotorTown\Content\DataAsset/VehicleParts/Engines.uasset Pidoras_engeen_P\MotorTown\Content\DataAsset/VehicleParts/Engines.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for Pidoras_engeen_P\MotorTown\Content\DataAsset/VehicleParts/Engines.uasset
+[UAssetGUI] Running: UAssetGUI.exe tojson qxZap_MoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/Engines.uasset qxZap_MoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/Engines.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for qxZap_MoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/Engines.uasset
+[UAssetGUI] Running: UAssetGUI.exe tojson Z_TehsEngineSoundPackCompatibilityMoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/Engines.uasset Z_TehsEngineSoundPackCompatibilityMoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/Engines.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for Z_TehsEngineSoundPackCompatibilityMoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/Engines.uasset
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Engines.uasset BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Engines.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Engines.uasset
+[UAssetGUI] Running: UAssetGUI.exe fromjson ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/Engines.json ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/Engines.uasset MotorTown
+[UAssetGUI] Created Uasset for ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/Engines.json
+Unhandled exception. System.IO.DirectoryNotFoundException: Could not find a part of the path 'D:\MT\ZMTLoader\ZMTLoader\BASE_GAME_DATA\DataAsset\VehicleParts\LSD.uasset'.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.File.Open(String path, FileMode mode, FileAccess access)
+   at UAssetAPI.UAsset.PathToStream(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 476
+   at UAssetAPI.UAsset.PathToReader(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 514
+   at UAssetAPI.UAsset..ctor(String path, EngineVersion engineVersion, Usmap mappings, CustomSerializationFlags customSerializationFlags) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 2997
+   at UAssetGUI.Program.Main() in C:\Users\hyper\git\UAssetGUI\UAssetGUI\Program.cs:line 47
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\DataAsset/VehicleParts/LSD.uasset BASE_GAME_DATA\DataAsset/VehicleParts/LSD.json VER_UE5_5 MotorTown
+[UAssetGUI] Failed BASE_GAME_DATA\DataAsset/VehicleParts/LSD.uasset with code 3762504530
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/LSD.uasset BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/LSD.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/LSD.uasset
+Unhandled exception. System.IO.DirectoryNotFoundException: Could not find a part of the path 'D:\MT\ZMTLoader\ZMTLoader\BASE_GAME_DATA\DataAsset\VehicleParts\Transmissions.uasset'.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.File.Open(String path, FileMode mode, FileAccess access)
+   at UAssetAPI.UAsset.PathToStream(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 476
+   at UAssetAPI.UAsset.PathToReader(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 514
+   at UAssetAPI.UAsset..ctor(String path, EngineVersion engineVersion, Usmap mappings, CustomSerializationFlags customSerializationFlags) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 2997
+   at UAssetGUI.Program.Main() in C:\Users\hyper\git\UAssetGUI\UAssetGUI\Program.cs:line 47
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\DataAsset/VehicleParts/Transmissions.uasset BASE_GAME_DATA\DataAsset/VehicleParts/Transmissions.json VER_UE5_5 MotorTown
+[UAssetGUI] Failed BASE_GAME_DATA\DataAsset/VehicleParts/Transmissions.uasset with code 3762504530
+[UAssetGUI] Running: UAssetGUI.exe tojson MajasMotorWorksV2_P\MotorTown\Content\DataAsset/VehicleParts/Transmissions.uasset MajasMotorWorksV2_P\MotorTown\Content\DataAsset/VehicleParts/Transmissions.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for MajasMotorWorksV2_P\MotorTown\Content\DataAsset/VehicleParts/Transmissions.uasset
+[UAssetGUI] Running: UAssetGUI.exe tojson Pidoras_engeen_P\MotorTown\Content\DataAsset/VehicleParts/Transmissions.uasset Pidoras_engeen_P\MotorTown\Content\DataAsset/VehicleParts/Transmissions.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for Pidoras_engeen_P\MotorTown\Content\DataAsset/VehicleParts/Transmissions.uasset
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Transmissions.uasset BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Transmissions.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Transmissions.uasset
+[UAssetGUI] Running: UAssetGUI.exe fromjson ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/Transmissions.json ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/Transmissions.uasset MotorTown
+[UAssetGUI] Created Uasset for ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/Transmissions.json
+Unhandled exception. System.IO.DirectoryNotFoundException: Could not find a part of the path 'D:\MT\ZMTLoader\ZMTLoader\BASE_GAME_DATA\DataAsset\VehicleParts\VehicleParts0.uasset'.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.File.Open(String path, FileMode mode, FileAccess access)
+   at UAssetAPI.UAsset.PathToStream(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 476
+   at UAssetAPI.UAsset.PathToReader(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 514
+   at UAssetAPI.UAsset..ctor(String path, EngineVersion engineVersion, Usmap mappings, CustomSerializationFlags customSerializationFlags) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 2997
+   at UAssetGUI.Program.Main() in C:\Users\hyper\git\UAssetGUI\UAssetGUI\Program.cs:line 47
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\DataAsset/VehicleParts/VehicleParts0.uasset BASE_GAME_DATA\DataAsset/VehicleParts/VehicleParts0.json VER_UE5_5 MotorTown
+[UAssetGUI] Failed BASE_GAME_DATA\DataAsset/VehicleParts/VehicleParts0.uasset with code 3762504530
+[UAssetGUI] Running: UAssetGUI.exe tojson MajasMotorWorksV2_P\MotorTown\Content\DataAsset/VehicleParts/VehicleParts0.uasset MajasMotorWorksV2_P\MotorTown\Content\DataAsset/VehicleParts/VehicleParts0.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for MajasMotorWorksV2_P\MotorTown\Content\DataAsset/VehicleParts/VehicleParts0.uasset
+[UAssetGUI] Running: UAssetGUI.exe tojson qxZap_MoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/VehicleParts0.uasset qxZap_MoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/VehicleParts0.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for qxZap_MoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/VehicleParts0.uasset
+[UAssetGUI] Running: UAssetGUI.exe tojson Z_TehsEngineSoundPackCompatibilityMoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/VehicleParts0.uasset Z_TehsEngineSoundPackCompatibilityMoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/VehicleParts0.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for Z_TehsEngineSoundPackCompatibilityMoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/VehicleParts0.uasset
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/VehicleParts0.uasset BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/VehicleParts0.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/VehicleParts0.uasset
+[UAssetGUI] Running: UAssetGUI.exe fromjson ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/VehicleParts0.json ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/VehicleParts0.uasset MotorTown
+[UAssetGUI] Created Uasset for ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/VehicleParts0.json
+Unhandled exception. System.IO.DirectoryNotFoundException: Could not find a part of the path 'D:\MT\ZMTLoader\ZMTLoader\BASE_GAME_DATA\DataAsset\VehicleParts\Headlights.uasset'.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.File.Open(String path, FileMode mode, FileAccess access)
+   at UAssetAPI.UAsset.PathToStream(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 476
+   at UAssetAPI.UAsset.PathToReader(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 514
+   at UAssetAPI.UAsset..ctor(String path, EngineVersion engineVersion, Usmap mappings, CustomSerializationFlags customSerializationFlags) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 2997
+   at UAssetGUI.Program.Main() in C:\Users\hyper\git\UAssetGUI\UAssetGUI\Program.cs:line 47
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\DataAsset/VehicleParts/Headlights.uasset BASE_GAME_DATA\DataAsset/VehicleParts/Headlights.json VER_UE5_5 MotorTown
+[UAssetGUI] Failed BASE_GAME_DATA\DataAsset/VehicleParts/Headlights.uasset with code 3762504530
+[UAssetGUI] Running: UAssetGUI.exe tojson qxZap_MoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/Headlights.uasset qxZap_MoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/Headlights.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for qxZap_MoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/Headlights.uasset
+[UAssetGUI] Running: UAssetGUI.exe tojson Z_AnotherHeadlightmod_P\MotorTown\Content\DataAsset/VehicleParts/Headlights.uasset Z_AnotherHeadlightmod_P\MotorTown\Content\DataAsset/VehicleParts/Headlights.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for Z_AnotherHeadlightmod_P\MotorTown\Content\DataAsset/VehicleParts/Headlights.uasset
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Headlights.uasset BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Headlights.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Headlights.uasset
+[UAssetGUI] Running: UAssetGUI.exe fromjson ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/Headlights.json ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/Headlights.uasset MotorTown
+[UAssetGUI] Created Uasset for ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/Headlights.json
+Unhandled exception. System.IO.DirectoryNotFoundException: Could not find a part of the path 'D:\MT\ZMTLoader\ZMTLoader\BASE_GAME_DATA\DataAsset\VehicleParts\Suspensions.uasset'.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.File.Open(String path, FileMode mode, FileAccess access)
+   at UAssetAPI.UAsset.PathToStream(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 476
+   at UAssetAPI.UAsset.PathToReader(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 514
+   at UAssetAPI.UAsset..ctor(String path, EngineVersion engineVersion, Usmap mappings, CustomSerializationFlags customSerializationFlags) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 2997
+   at UAssetGUI.Program.Main() in C:\Users\hyper\git\UAssetGUI\UAssetGUI\Program.cs:line 47
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\DataAsset/VehicleParts/Suspensions.uasset BASE_GAME_DATA\DataAsset/VehicleParts/Suspensions.json VER_UE5_5 MotorTown
+[UAssetGUI] Failed BASE_GAME_DATA\DataAsset/VehicleParts/Suspensions.uasset with code 3762504530
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Suspensions.uasset BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Suspensions.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Suspensions.uasset
+Unhandled exception. System.IO.DirectoryNotFoundException: Could not find a part of the path 'D:\MT\ZMTLoader\ZMTLoader\BASE_GAME_DATA\DataAsset\VehicleParts\AeroParts.uasset'.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.File.Open(String path, FileMode mode, FileAccess access)
+   at UAssetAPI.UAsset.PathToStream(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 476
+   at UAssetAPI.UAsset.PathToReader(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 514
+   at UAssetAPI.UAsset..ctor(String path, EngineVersion engineVersion, Usmap mappings, CustomSerializationFlags customSerializationFlags) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 2997
+   at UAssetGUI.Program.Main() in C:\Users\hyper\git\UAssetGUI\UAssetGUI\Program.cs:line 47
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\DataAsset/VehicleParts/AeroParts.uasset BASE_GAME_DATA\DataAsset/VehicleParts/AeroParts.json VER_UE5_5 MotorTown
+[UAssetGUI] Failed BASE_GAME_DATA\DataAsset/VehicleParts/AeroParts.uasset with code 3762504530
+[UAssetGUI] Running: UAssetGUI.exe tojson MajasMotorWorksV2_P\MotorTown\Content\DataAsset/VehicleParts/AeroParts.uasset MajasMotorWorksV2_P\MotorTown\Content\DataAsset/VehicleParts/AeroParts.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for MajasMotorWorksV2_P\MotorTown\Content\DataAsset/VehicleParts/AeroParts.uasset
+[UAssetGUI] Running: UAssetGUI.exe tojson qxZap_MoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/AeroParts.uasset qxZap_MoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/AeroParts.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for qxZap_MoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/AeroParts.uasset
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/AeroParts.uasset BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/AeroParts.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/AeroParts.uasset
+[UAssetGUI] Running: UAssetGUI.exe fromjson ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/AeroParts.json ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/AeroParts.uasset MotorTown
+[UAssetGUI] Created Uasset for ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/AeroParts.json
+Unhandled exception. System.IO.DirectoryNotFoundException: Could not find a part of the path 'D:\MT\ZMTLoader\ZMTLoader\BASE_GAME_DATA\DataAsset\VehicleParts\BrakePads.uasset'.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.File.Open(String path, FileMode mode, FileAccess access)
+   at UAssetAPI.UAsset.PathToStream(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 476
+   at UAssetAPI.UAsset.PathToReader(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 514
+   at UAssetAPI.UAsset..ctor(String path, EngineVersion engineVersion, Usmap mappings, CustomSerializationFlags customSerializationFlags) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 2997
+   at UAssetGUI.Program.Main() in C:\Users\hyper\git\UAssetGUI\UAssetGUI\Program.cs:line 47
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\DataAsset/VehicleParts/BrakePads.uasset BASE_GAME_DATA\DataAsset/VehicleParts/BrakePads.json VER_UE5_5 MotorTown
+[UAssetGUI] Failed BASE_GAME_DATA\DataAsset/VehicleParts/BrakePads.uasset with code 3762504530
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/BrakePads.uasset BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/BrakePads.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/BrakePads.uasset
+Unhandled exception. System.IO.DirectoryNotFoundException: Could not find a part of the path 'D:\MT\ZMTLoader\ZMTLoader\BASE_GAME_DATA\DataAsset\VehicleParts\Brakes.uasset'.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.File.Open(String path, FileMode mode, FileAccess access)
+   at UAssetAPI.UAsset.PathToStream(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 476
+   at UAssetAPI.UAsset.PathToReader(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 514
+   at UAssetAPI.UAsset..ctor(String path, EngineVersion engineVersion, Usmap mappings, CustomSerializationFlags customSerializationFlags) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 2997
+   at UAssetGUI.Program.Main() in C:\Users\hyper\git\UAssetGUI\UAssetGUI\Program.cs:line 47
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\DataAsset/VehicleParts/Brakes.uasset BASE_GAME_DATA\DataAsset/VehicleParts/Brakes.json VER_UE5_5 MotorTown
+[UAssetGUI] Failed BASE_GAME_DATA\DataAsset/VehicleParts/Brakes.uasset with code 3762504530
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Brakes.uasset BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Brakes.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Brakes.uasset
+Unhandled exception. System.IO.DirectoryNotFoundException: Could not find a part of the path 'D:\MT\ZMTLoader\ZMTLoader\BASE_GAME_DATA\DataAsset\VehicleParts\FinalDriveRatio.uasset'.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.File.Open(String path, FileMode mode, FileAccess access)
+   at UAssetAPI.UAsset.PathToStream(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 476
+   at UAssetAPI.UAsset.PathToReader(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 514
+   at UAssetAPI.UAsset..ctor(String path, EngineVersion engineVersion, Usmap mappings, CustomSerializationFlags customSerializationFlags) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 2997
+   at UAssetGUI.Program.Main() in C:\Users\hyper\git\UAssetGUI\UAssetGUI\Program.cs:line 47
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\DataAsset/VehicleParts/FinalDriveRatio.uasset BASE_GAME_DATA\DataAsset/VehicleParts/FinalDriveRatio.json VER_UE5_5 MotorTown
+[UAssetGUI] Failed BASE_GAME_DATA\DataAsset/VehicleParts/FinalDriveRatio.uasset with code 3762504530
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/FinalDriveRatio.uasset BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/FinalDriveRatio.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/FinalDriveRatio.uasset
+Unhandled exception. System.IO.DirectoryNotFoundException: Could not find a part of the path 'D:\MT\ZMTLoader\ZMTLoader\BASE_GAME_DATA\DataAsset\VehicleParts\Wheels.uasset'.
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.CreateFile(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options)
+   at Microsoft.Win32.SafeHandles.SafeFileHandle.Open(String fullPath, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.OSFileStreamStrategy..ctor(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.Strategies.FileStreamHelpers.ChooseStrategyCore(String path, FileMode mode, FileAccess access, FileShare share, FileOptions options, Int64 preallocationSize, Nullable`1 unixCreateMode)
+   at System.IO.File.Open(String path, FileMode mode, FileAccess access)
+   at UAssetAPI.UAsset.PathToStream(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 476
+   at UAssetAPI.UAsset.PathToReader(String p, Boolean loadUEXP) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 514
+   at UAssetAPI.UAsset..ctor(String path, EngineVersion engineVersion, Usmap mappings, CustomSerializationFlags customSerializationFlags) in C:\Users\hyper\git\UAssetGUI\UAssetAPI\UAssetAPI\UAsset.cs:line 2997
+   at UAssetGUI.Program.Main() in C:\Users\hyper\git\UAssetGUI\UAssetGUI\Program.cs:line 47
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\DataAsset/VehicleParts/Wheels.uasset BASE_GAME_DATA\DataAsset/VehicleParts/Wheels.json VER_UE5_5 MotorTown
+[UAssetGUI] Failed BASE_GAME_DATA\DataAsset/VehicleParts/Wheels.uasset with code 3762504530
+[UAssetGUI] Running: UAssetGUI.exe tojson MajasMotorWorksV2_P\MotorTown\Content\DataAsset/VehicleParts/Wheels.uasset MajasMotorWorksV2_P\MotorTown\Content\DataAsset/VehicleParts/Wheels.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for MajasMotorWorksV2_P\MotorTown\Content\DataAsset/VehicleParts/Wheels.uasset
+[UAssetGUI] Running: UAssetGUI.exe tojson qxZap_MoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/Wheels.uasset qxZap_MoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/Wheels.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for qxZap_MoreTuning_P\MotorTown\Content\DataAsset/VehicleParts/Wheels.uasset
+[UAssetGUI] Running: UAssetGUI.exe tojson BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Wheels.uasset BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Wheels.json VER_UE5_5 MotorTown
+[UAssetGUI] Created JSON for BASE_GAME_DATA\MotorTown\Content\DataAsset/VehicleParts/Wheels.uasset
+[UAssetGUI] Running: UAssetGUI.exe fromjson ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/Wheels.json ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/Wheels.uasset MotorTown
+[UAssetGUI] Created Uasset for ZZZZ_ZMT_Modpack_Fix_P\DataAsset/VehicleParts/Wheels.json

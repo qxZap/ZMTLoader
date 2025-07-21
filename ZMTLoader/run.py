@@ -377,7 +377,6 @@ def run_fromjson_to_uasset(json_path):
         uasset_output,
         MAPPINGS
     ]
-    print(' '.join(cmd))
     log_file = os.path.join(LOG_FILE)
     with open(log_file, "a") as log:
         try:

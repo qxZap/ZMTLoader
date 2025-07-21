@@ -1,8 +1,9 @@
 import os
+import sys
 import json
 import copy
 import shutil
-import platform
+import hashlib
 import subprocess
 import threading
 from multiprocessing import cpu_count
@@ -10,7 +11,6 @@ from multiprocessing import cpu_count
 # Constants
 num_threads = max(1, cpu_count() // 2)
 DEFAULT_PATH_MODS = '..'
-UNREAL_PAK_PATH = "UnrealPak/UnrealPak.exe"
 UASSET_GUI_PATH = 'UAssetGUI.exe'
 REPACK_PATH = "repak.exe"
 UE_VER = 'VER_UE5_5'
@@ -19,6 +19,9 @@ LOG_FILE = 'log.txt'
 MT_AES = '0xD9633F9140D5494AE4A469BDA384896BD1B9644D50D281E64ECFF4900B8E8E80'
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_GAME_DATA = 'BASE_GAME_DATA'
+MOD_GENERATE_PREFIX = 'ZZZZ_ZMT_'
+FIX_MOD_NAME = MOD_GENERATE_PREFIX + 'Modpack_Fix_P'
+SHA_FILE_PATH = 'cached_sha.json'
 
 KNOWN_CONFLICTS = {
     'DataAsset/VehicleParts/Engines.uasset': 'def_merge',
@@ -133,15 +136,27 @@ def solve_conflict_with_base(base_file_path, mod_files_paths, conflict_type, out
     def get_asset_index(index):
         return (-1)*(index+1)
     
+    def get_asset_index_reverse(index):
+        return (-1)*index-1
+    
     def get_asset_outer_index_from_imports(imports, asset_name):
         for idx, entry in enumerate(imports):
             if entry.get("ObjectName") == asset_name:
                 return get_asset_index(idx)
         return 0
+
+    def get_asset_outer_index_from_imports_that_has_package_path(imports, asset_name, package_path):
+        for idx, entry in enumerate(imports):
+            if entry.get("ObjectName") == package_path:
+                package_index = get_asset_index(idx)
+                for idx2, entry2 in enumerate(imports):
+                    if entry2.get("ObjectName") == asset_name and entry2.get('OuterIndex') == package_index:
+                        return get_asset_index(idx2)
+        return 0
     
     def new_import(imports, object_name, class_name, object_path):
         new_imports = copy.deepcopy(imports)
-        outer_index = get_asset_outer_index_from_imports(new_imports, object_name)
+        outer_index = get_asset_outer_index_from_imports_that_has_package_path(new_imports, object_name, object_path)
         if outer_index:
             # The import was found, hence returning the index of the asset
             return outer_index, new_imports
@@ -235,12 +250,22 @@ def solve_conflict_with_base(base_file_path, mod_files_paths, conflict_type, out
         f.write(json.dumps(final_json, indent=4))
 
 
+def write_file_shas(data: dict):
+    with open(SHA_FILE_PATH, 'w') as f:
+        json.dump(data, f, indent=4)
 
+def load_file_shas():
+    if not os.path.exists(SHA_FILE_PATH):
+        return {}
+    with open(SHA_FILE_PATH, 'r') as f:
+        return json.load(f)
 
-
-
-
-
+def get_file_sha256(filepath):
+    hash_sha256 = hashlib.sha256()
+    with open(filepath, 'rb') as f:
+        for chunk in iter(lambda: f.read(8192), b''):
+            hash_sha256.update(chunk)
+        return hash_sha256.hexdigest()
 
 def has_motortown_content_folder(base_path):
     motor_town_path = os.path.join(base_path, MT_PATH_CONTENT[0])
@@ -268,16 +293,11 @@ def getFiles(path):
 
 
 def getModFiles(path):
-    return [file for file in getFiles(path) if file.endswith('_P.pak')]
+    return [file for file in getFiles(path) if file.endswith('_P.pak') and not file.startswith(MOD_GENERATE_PREFIX)]
 
 
 def getBaseFiles(path):
     return [file for file in getFiles(path) if not file.endswith('_P.pak')]
-
-
-def extractCommand(repakPath, targetPak):
-    return [repakPath, "unpack", targetPak]
-
 
 def extract_pak(modFileName):
     pak_work_path = os.path.join(os.getcwd(), modFileName)
@@ -292,11 +312,6 @@ def extract_pak(modFileName):
             if result != 0:
                 raise RuntimeError(f"Command failed with exit code {result}")
             log.write(f"[{modFileName}] Extraction Done.\n")
-
-            if os.path.exists(pak_work_path):
-                os.remove(pak_work_path)
-                log.write(f"[{modFileName}] Removed copied pak file in working dir.\n")
-
         except Exception as e:
             log.write(f"[{modFileName}] Failed: {str(e)}\n\n")
 
@@ -418,6 +433,10 @@ def extract_single_asset(pak_file, asset_path, has_ubulk=False, dest_dir="."):
         cmd = f'cmd /c "{REPACK_PATH} -a {MT_AES} get {pak_file} {pak_entry} > {out_file}"'
         os.system(cmd)
 
+def remove_mods(mods):
+    for modFileName in mods:
+        os.remove(modFileName)
+
 if __name__ == "__main__":
     mods = getModFiles(DEFAULT_PATH_MODS)
     base_files = getBaseFiles(DEFAULT_PATH_MODS)
@@ -430,7 +449,20 @@ if __name__ == "__main__":
             shutil.copy2(src, dst)
 
     print(f"Using {num_threads} threads for extraction.")
+    previous_shas = load_file_shas()
+    shas = {}
     threads = []
+    for modFileName in mods:
+        shas[modFileName] = get_file_sha256(modFileName)
+    
+    if shas == previous_shas:
+        print("ZMT: Mods have not changed. Game will now start")
+        remove_mods(mods)
+        remove_mods(base_files)
+        sys.exit(1)
+    else:
+        write_file_shas(shas)
+
     for modFileName in mods:
         while threading.active_count() - 1 >= num_threads:
             pass
@@ -440,6 +472,8 @@ if __name__ == "__main__":
 
     for t in threads:
         t.join()
+
+    remove_mods(mods)
 
     print("All mod extractions completed.")
 
@@ -467,7 +501,7 @@ if __name__ == "__main__":
                 normalized = normalize_path(rel_path)
                 mod_asset_lookup[normalized] = asset["has_ubulk"]
 
-        FIX_MOD_NAME = 'ZZZZ_ZMT_Modpack_Fix_P'
+        
         FIX_MOD_PATH = os.path.join(os.getcwd(), FIX_MOD_NAME)
         os.makedirs(FIX_MOD_PATH, exist_ok=True)
 
@@ -543,13 +577,14 @@ if __name__ == "__main__":
         
         if conflicts_solved:
             run_mod_packing(FIX_MOD_NAME)
-            # shutil.rmtree(FIX_MOD_NAME)
+            shutil.rmtree(FIX_MOD_NAME)
 
             pak_file = FIX_MOD_NAME + '.pak'
             src = os.path.join(pak_file)
             dst = os.path.join('../'+pak_file)
             if os.path.exists(src):
                 shutil.move(src, dst)
+
 
 
                 

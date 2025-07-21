@@ -4,9 +4,12 @@ ZMTLoader/*_P
 ZMTLoader/BASE_GAME_DATA/
 ZMTLoader/build/
 ZMTLoader/dist/
-ZMTLoader/log.txt
-ZMTLoader/conflicts.json
-ZMTLoader/mod_asset_map.json
+# ZMTLoader/log.txt
+# ZMTLoader/conflicts.json
+# ZMTLoader/mod_asset_map.json
+ZMTLoader/cached_sha.json
+ZMTLoader/ZMTLoader.exe
+ZMTLoader/ZMTLoader.zip
 
 # Ignore all .pak files
 *.pak

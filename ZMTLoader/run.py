@@ -22,6 +22,7 @@ BASE_GAME_DATA = 'BASE_GAME_DATA'
 MOD_GENERATE_PREFIX = 'ZZZZ_ZMT_'
 FIX_MOD_NAME = MOD_GENERATE_PREFIX + 'Modpack_Fix_P'
 SHA_FILE_PATH = 'cached_sha.json'
+GAME_EXE = '../../Binaries/Win64/MotorTown-Win64-Shipping.exe'
 
 KNOWN_CONFLICTS = {
     'DataAsset/VehicleParts/Engines.uasset': 'def_merge',
@@ -584,6 +585,17 @@ if __name__ == "__main__":
             dst = os.path.join('../'+pak_file)
             if os.path.exists(src):
                 shutil.move(src, dst)
+    
+    print("ZMTLoader finished working, starting the game")
+    try:
+        subprocess.Popen(
+            [GAME_EXE],
+            shell=True,
+            creationflags=subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
+        )
+        print("Game launched successfully.")
+    except Exception as e:
+        print(f"Error launching game: {e}")
 
 
 

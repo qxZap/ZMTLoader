@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import copy
+import time
 import shutil
 import hashlib
 import subprocess
@@ -23,6 +24,7 @@ MOD_GENERATE_PREFIX = 'ZZZZ_ZMT_'
 FIX_MOD_NAME = MOD_GENERATE_PREFIX + 'Modpack_Fix_P'
 SHA_FILE_PATH = 'cached_sha.json'
 GAME_EXE = '../../Binaries/Win64/MotorTown-Win64-Shipping.exe'
+steam_app_id = '1369670'
 
 KNOWN_CONFLICTS = {
     'DataAsset/VehicleParts/Engines.uasset': 'def_merge',
@@ -71,7 +73,15 @@ MT_PART_TYPES = {
 }
 
 
+def start_game():
+    os.startfile(f'steam://run/{steam_app_id}')
+    time.sleep(3)
 
+def remove_log_file():
+    try:
+        os.remove(LOG_FILE)
+    except FileNotFoundError:
+        pass
 
 def load_json(path_to_json):
     json_load = {}
@@ -439,6 +449,7 @@ def remove_mods(mods):
         os.remove(modFileName)
 
 if __name__ == "__main__":
+    remove_log_file()
     mods = getModFiles(DEFAULT_PATH_MODS)
     base_files = getBaseFiles(DEFAULT_PATH_MODS)
 
@@ -460,6 +471,7 @@ if __name__ == "__main__":
         print("ZMT: Mods have not changed. Game will now start")
         remove_mods(mods)
         remove_mods(base_files)
+        start_game()
         sys.exit(1)
     else:
         write_file_shas(shas)
@@ -587,15 +599,7 @@ if __name__ == "__main__":
                 shutil.move(src, dst)
     
     print("ZMTLoader finished working, starting the game")
-    try:
-        subprocess.Popen(
-            [GAME_EXE],
-            shell=True,
-            creationflags=subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP
-        )
-        print("Game launched successfully.")
-    except Exception as e:
-        print(f"Error launching game: {e}")
+    start_game()
 
 
 

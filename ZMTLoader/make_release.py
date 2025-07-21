@@ -3,7 +3,7 @@ import os
 
 zip_name = 'ZMTLoader.zip'
 folder_in_zip = 'ZMTLoader'
-file_list = ['ZMTLoader.exe', 'MotorTown.usmap', 'oo2core_9_win64.dll', 'repak.exe', 'UAssetGUI.exe']  # Files to include inside the folder
+file_list = ['ZMTLoader.exe', 'MotorTown.usmap', 'oo2core_9_win64.dll', 'repak.exe', 'UAssetGUI.exe', 'ADD_TO_DESKTOP.bat']
 readme_path = 'README.txt'
 
 with zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED) as zipf:

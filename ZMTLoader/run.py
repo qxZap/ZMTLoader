@@ -37,7 +37,8 @@ KNOWN_CONFLICTS = {
     'DataAsset/VehicleParts/BrakePads.uasset': 'def_merge',
     'DataAsset/VehicleParts/Brakes.uasset': 'def_merge',
     'DataAsset/VehicleParts/FinalDriveRatio.uasset': 'def_merge',
-    'DataAsset/VehicleParts/Wheels.uasset': 'def_merge'
+    'DataAsset/VehicleParts/Wheels.uasset': 'def_merge',
+    'DataAsset/Decals.uasset': 'simple_table_merge'
 }
 
 MT_PATH_CONTENT = ['MotorTown', 'Content']
@@ -111,7 +112,7 @@ def new_object_import(object_name, index, class_name):
       "bImportOptional": False
     }
 
-def solve_conflict_with_base(base_file_path, mod_files_paths, conflict_type, output_path):
+def solve_def_merge_conflict(base_file_path, mod_files_paths, output_path):
     base_json = load_json(base_file_path)
     final_json = load_json(base_file_path)
     final_parts = []
@@ -260,6 +261,59 @@ def solve_conflict_with_base(base_file_path, mod_files_paths, conflict_type, out
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(json.dumps(final_json, indent=4))
 
+def solve_simple_table_merge(base_file_path, mod_files_paths, output_path):
+    base_json = load_json(base_file_path)
+    final_json = load_json(base_file_path)
+    final_parts = []
+
+    mods_json = []
+    for mod_files_path in mod_files_paths:
+        mods_json.append(load_json(mod_files_path))
+    
+    for part in base_json.get('Exports')[0].get('Table').get('Data'):
+        part_name = part.get('Name')
+        part_to_add = part
+        for mod_json in mods_json:
+            for mod_part in mod_json.get('Exports')[0].get('Table').get('Data'):
+                mod_part_name = mod_part.get('Name')
+                if mod_part_name == part_name:
+                    if part!=mod_part:
+                        part_to_add = mod_part
+        final_parts.append(part_to_add)
+    
+    final_json['Exports'][0]['Table']['Data'] = final_parts
+
+    final_names = final_json.get('NameMap')
+    for mod_json in mods_json:
+        for mod_name_map_component in mod_json.get('NameMap'):
+            if mod_name_map_component not in final_names:
+                final_names.append(mod_name_map_component)
+    final_json['NameMap'] = final_names
+
+    for mod_json in mods_json:
+        mod_import_map = mod_json.get('Imports')
+        for mod_part in mod_json.get('Exports')[0].get('Table').get('Data'):
+            mod_part_name = mod_part.get('Name')
+
+            is_new_part = True
+            for part in base_json.get('Exports')[0].get('Table').get('Data'):
+                part_name = part.get('Name')
+                if part_name == mod_part_name:
+                    is_new_part = False
+            
+            if is_new_part:
+                final_parts.append(mod_part)
+    
+    final_json['Exports'][0]['Table']['Data'] = final_parts
+
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(json.dumps(final_json, indent=4))
+
+def solve_conflict_with_base(base_file_path, mod_files_paths, conflict_type, output_path):
+    if conflict_type == 'def_merge':
+        solve_def_merge_conflict(base_file_path, mod_files_paths, output_path)
+    if conflict_type == 'simple_table_merge':
+        solve_simple_table_merge(base_file_path, mod_files_paths, output_path)
 
 def write_file_shas(data: dict):
     with open(SHA_FILE_PATH, 'w') as f:
@@ -452,6 +506,11 @@ if __name__ == "__main__":
     remove_log_file()
     mods = getModFiles(DEFAULT_PATH_MODS)
     base_files = getBaseFiles(DEFAULT_PATH_MODS)
+
+    if len(base_files) == 0:
+        print("ZMT: Base .pak of the game missing. Mod loader will not do anything.\nPress ENTER to continue")
+        input()
+        sys.exit(1)
 
     previous_shas = load_file_shas()
     shas = {}

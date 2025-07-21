@@ -346,6 +346,21 @@ def find_conflicts(mod_asset_map):
 
     return {rel_path: mods for rel_path, mods in file_map.items() if len(mods) > 1}
 
+def run_mod_packing(mod_name):
+    cmd = [
+        REPACK_PATH,
+        'pack',
+        mod_name
+    ]
+    log_file = os.path.join(LOG_FILE)
+    with open(log_file, "a") as log:
+        try:
+            log.write(f"[Repak] Running: {' '.join(cmd)}\n")
+            subprocess.run(cmd, check=True, stdout=log, stderr=log)
+            log.write(f"[Repak] Fix mod created")
+        except subprocess.CalledProcessError as e:
+            log.write(f"[Repak] Error creating fix mod")
+
 
 def run_uasset_tojson(uasset_path):
     base_name = os.path.splitext(os.path.basename(uasset_path))[0]
@@ -456,7 +471,7 @@ if __name__ == "__main__":
         FIX_MOD_PATH = os.path.join(os.getcwd(), FIX_MOD_NAME)
         os.makedirs(FIX_MOD_PATH, exist_ok=True)
 
-        print(f"Fix mod folder ensured at: {FIX_MOD_PATH}")
+        conflicts_solved = 0
 
         # Use base pak file from base_files list
         if len(base_files) != 1:
@@ -499,11 +514,8 @@ if __name__ == "__main__":
                     os.makedirs(os.path.dirname(output_json_path), exist_ok=True)
                     solve_conflict_with_base(base_json_path, mod_json_files, conflict_type, output_json_path)
                     run_fromjson_to_uasset(json_file)
-                    print(f"[{conflict_type}] Conflict merged -> {json_file.replace('.json', '.uasset')}")
                     os.remove(output_json_path)
-                else:
-                    print(f"[{conflict_type}] Skipped. Missing base or mod JSONs")
-
+                    conflicts_solved+=1
 
         for mod_folder in mod_asset_map.keys():
             abs_mod_folder = os.path.abspath(mod_folder)
@@ -514,5 +526,30 @@ if __name__ == "__main__":
             os.remove(base_file)
         
         shutil.rmtree(BASE_GAME_DATA)
+
+        target_path = os.path.join(FIX_MOD_NAME, *MT_PATH_CONTENT)
+        os.makedirs(target_path, exist_ok=True)
+
+        skip_path = os.path.join(FIX_MOD_NAME, MT_PATH_CONTENT[0])
+
+        for item in os.listdir(FIX_MOD_NAME):
+            src = os.path.join(FIX_MOD_NAME, item)
+
+            if os.path.abspath(src) == os.path.abspath(skip_path):
+                continue
+
+            dest = os.path.join(target_path, item)
+            shutil.move(src, dest)
+        
+        if conflicts_solved:
+            run_mod_packing(FIX_MOD_NAME)
+            # shutil.rmtree(FIX_MOD_NAME)
+
+            pak_file = FIX_MOD_NAME + '.pak'
+            src = os.path.join(pak_file)
+            dst = os.path.join('../'+pak_file)
+            if os.path.exists(src):
+                shutil.move(src, dst)
+
 
                 

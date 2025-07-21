@@ -565,6 +565,32 @@
       "has_ubulk": false
     }
   ],
+  "ZZZZ_ZMT_Modpack_Fix_P": [
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\ZZZZ_ZMT_Modpack_Fix_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\AeroParts.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\ZZZZ_ZMT_Modpack_Fix_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\Engines.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\ZZZZ_ZMT_Modpack_Fix_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\Headlights.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\ZZZZ_ZMT_Modpack_Fix_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\Transmissions.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\ZZZZ_ZMT_Modpack_Fix_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\VehicleParts0.uasset",
+      "has_ubulk": false
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\ZZZZ_ZMT_Modpack_Fix_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\Wheels.uasset",
+      "has_ubulk": false
+    }
+  ],
   "Z_AnotherHeadlightmod_P": [
     {
       "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\Z_AnotherHeadlightmod_P\\MotorTown\\Content\\Cars\\Models\\Cora\\Headlight_022.uasset",

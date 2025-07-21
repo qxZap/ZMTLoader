@@ -1,26 +1,31 @@
 {
   "DataAsset/VehicleParts/AeroParts.uasset": [
     "MajasMotorWorksV2_P",
-    "qxZap_MoreTuning_P"
+    "qxZap_MoreTuning_P",
+    "ZZZZ_ZMT_Modpack_Fix_P"
   ],
   "DataAsset/VehicleParts/Engines.uasset": [
     "MajasMotorWorksV2_P",
     "Pidoras_engeen_P",
     "qxZap_MoreTuning_P",
+    "ZZZZ_ZMT_Modpack_Fix_P",
     "Z_TehsEngineSoundPackCompatibilityMoreTuning_P"
   ],
   "DataAsset/VehicleParts/Transmissions.uasset": [
     "MajasMotorWorksV2_P",
-    "Pidoras_engeen_P"
+    "Pidoras_engeen_P",
+    "ZZZZ_ZMT_Modpack_Fix_P"
   ],
   "DataAsset/VehicleParts/VehicleParts0.uasset": [
     "MajasMotorWorksV2_P",
     "qxZap_MoreTuning_P",
+    "ZZZZ_ZMT_Modpack_Fix_P",
     "Z_TehsEngineSoundPackCompatibilityMoreTuning_P"
   ],
   "DataAsset/VehicleParts/Wheels.uasset": [
     "MajasMotorWorksV2_P",
-    "qxZap_MoreTuning_P"
+    "qxZap_MoreTuning_P",
+    "ZZZZ_ZMT_Modpack_Fix_P"
   ],
   "Cars/Parts/Engine/Sound/LightDiesel/LightDiesel_high.uasset": [
     "Pidoras_engeen_P",
@@ -40,6 +45,7 @@
   ],
   "DataAsset/VehicleParts/Headlights.uasset": [
     "qxZap_MoreTuning_P",
+    "ZZZZ_ZMT_Modpack_Fix_P",
     "Z_AnotherHeadlightmod_P"
   ]
 }

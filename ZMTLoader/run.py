@@ -1,5 +1,6 @@
 import os
 import json
+import copy
 import shutil
 import platform
 import subprocess
@@ -20,41 +21,53 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_GAME_DATA = 'BASE_GAME_DATA'
 
 KNOWN_CONFLICTS = {
-    # 'DataAsset/VehicleParts/Engines.uasset': 'def_merge',
-    # 'DataAsset/VehicleParts/LSD.uasset': 'def_merge',
-    # 'DataAsset/VehicleParts/Transmissions.uasset': 'def_merge',
-    'DataAsset/VehicleParts/VehicleParts0.uasset': 'def_merge'
+    'DataAsset/VehicleParts/Engines.uasset': 'def_merge',
+    'DataAsset/VehicleParts/LSD.uasset': 'def_merge',
+    'DataAsset/VehicleParts/Transmissions.uasset': 'def_merge',
+    'DataAsset/VehicleParts/VehicleParts0.uasset': 'def_merge',
+    'DataAsset/VehicleParts/Headlights.uasset': 'def_merge',
+    'DataAsset/VehicleParts/Suspensions.uasset': 'def_merge',
+    'DataAsset/VehicleParts/AeroParts.uasset': 'def_merge',
+    'DataAsset/VehicleParts/BrakePads.uasset': 'def_merge',
+    'DataAsset/VehicleParts/Brakes.uasset': 'def_merge',
+    'DataAsset/VehicleParts/FinalDriveRatio.uasset': 'def_merge',
+    'DataAsset/VehicleParts/Wheels.uasset': 'def_merge'
 }
 
 MT_PATH_CONTENT = ['MotorTown', 'Content']
 
 
-
-
-
-# MTVehiclePartTire
-# This one has value as json where the virst from value Value[0] has name TirePhysicsDataAsset 
-# (either first from value, or lurk in value until name is TirePhysicsDataAsset)
-# Then asset index is Value
-
 MT_TIRE_ASSET = "MTTirePhysicsDataAsset"
 MT_TIRE_PYS_ASSET = "TirePhysicsDataAsset"
 MT_TIRE_PYS_ASSET_REAR = "TirePhysicsDataAsset_BikeRear"
+MT_GENERIC_AERO = 'MTAero'
+MT_MESH = 'Mesh'
+MT_SKELETAL_MESH = 'SkelealMesh'
+
+
+MT_GENERIC_WHEEL = 'Wheel'
+WHEEL_L_M = 'LeftWheelMesh'
+WHEEL_R_M = 'RightWheelMesh'
+WHEEL_DRW_L_M = 'DRWLeftWheelMesh'
+WHEEL_DRW_R_M = 'DRWRightWheelMesh'
+WHEEL_R_L_W_M = 'RearLeftWheelMesh'
+WHEEL_R_R_W_M = 'RearRightWheelMesh'
 
 MT_ASSET_MAP = {
     'EngineAsset':'MHEngineDataAsset',
     'TransmissionAsset':'MTTransmissionDataAsset',
     'LSDAsset':'MTLSDDataAsset',
     'MTTirePhysicsDataAsset':'MTTirePhysicsDataAsset'
-    # '':'MTTirePhysicsDataAsset' #for tires is way different
 }
 
 MT_PART_TYPES = {
-    # Again for tires is different
     'Engine' : 'EngineAsset',
     'Transmission' : 'TransmissionAsset',
     'LSD' : 'LSDAsset',
 }
+
+
+
 
 def load_json(path_to_json):
     json_load = {}
@@ -117,6 +130,32 @@ def solve_conflict_with_base(base_file_path, mod_files_paths, conflict_type, out
 
     }
 
+    def get_asset_index(index):
+        return (-1)*(index+1)
+    
+    def get_asset_outer_index_from_imports(imports, asset_name):
+        for idx, entry in enumerate(imports):
+            if entry.get("ObjectName") == asset_name:
+                return get_asset_index(idx)
+        return 0
+    
+    def new_import(imports, object_name, class_name, object_path):
+        new_imports = copy.deepcopy(imports)
+        outer_index = get_asset_outer_index_from_imports(new_imports, object_name)
+        if outer_index:
+            # The import was found, hence returning the index of the asset
+            return outer_index, new_imports
+        else:
+            # The import was not found, so it shall be added
+            current_index = get_asset_index(len(new_imports))
+            new_imports.append(new_object_import(object_name,current_index-1,class_name))
+            new_imports.append(new_package_import(object_path))
+
+            return current_index, new_imports
+            
+    final_imports = final_json['Imports']
+    final_serialization = final_json['Exports'][0]['CreateBeforeSerializationDependencies']
+
     for mod_json in mods_json:
         mod_import_map = mod_json.get('Imports')
         for mod_part in mod_json.get('Exports')[0].get('Table').get('Data'):
@@ -133,10 +172,10 @@ def solve_conflict_with_base(base_file_path, mod_files_paths, conflict_type, out
                 new_parts[mod_part_name]['Part'] = mod_part
                 partType = None
                 partTypeAset = None
-                for row_data in mod_part.get('Value'):
+                for row_data in mod_part['Value']:
 
                     row_name = row_data.get('Name')
-                    row_val = row_data.get('Value')
+                    row_val = row_data['Value']
 
                     if row_name == "PartType":
                         partType = row_val
@@ -145,104 +184,55 @@ def solve_conflict_with_base(base_file_path, mod_files_paths, conflict_type, out
                         else:
                             if partType == 'Tire':
                                 partTypeAset = MT_TIRE_ASSET
+                            if partType == 'Headlight':
+                                partTypeAset = MT_GENERIC_AERO
 
                     if row_name == partTypeAset:
                         import_obj = mod_import_map[(-1)*row_val-1]
                         import_obj_pack_obj =  mod_import_map[(-1)*import_obj.get('OuterIndex')-1]
 
-                        new_parts[mod_part_name]['ObjectName'] = import_obj.get('ObjectName')
-                        new_parts[mod_part_name]['ObjectPackPath'] = import_obj_pack_obj.get('ObjectName')
-                        new_parts[mod_part_name]['PartTypeAsset'] = partTypeAset      
+                        assetTypeToImport = MT_ASSET_MAP[partTypeAset]
+                        assetNameToImport = import_obj.get('ObjectName')
+                        assetPackageToImport = import_obj_pack_obj.get('ObjectName')
 
-                    if row_name == 'Tire' and partTypeAset == MT_TIRE_ASSET:
-                        for sub_row in row_val:
-                            sub_row_name = sub_row.get("Name")
-                            sub_row_value = sub_row.get('Value')
-                            if sub_row_name == MT_TIRE_PYS_ASSET:
-                                new_parts[mod_part_name]['PartTypeAsset'] = partTypeAset
-                                import_obj = mod_import_map[(-1)*sub_row_value-1]
-                                import_obj_pack_obj =  mod_import_map[(-1)*import_obj.get('OuterIndex')-1]
+                        new_obj_index, final_imports = new_import(final_imports, assetNameToImport, assetTypeToImport, assetPackageToImport)
+                        row_data['Value'] = new_obj_index
 
-                                new_parts[mod_part_name]['ObjectName'] = import_obj.get('ObjectName')
-                                new_parts[mod_part_name]['ObjectPackPath'] = import_obj_pack_obj.get('ObjectName')
-                            
-                            if sub_row_name == MT_TIRE_PYS_ASSET_REAR:
-                                if sub_row_value!=0:
-                                    import_obj = mod_import_map[(-1)*sub_row_value-1]
-                                    import_obj_pack_obj =  mod_import_map[(-1)*import_obj.get('OuterIndex')-1]
+                        final_serialization.append(new_obj_index)
 
-                                    new_parts[mod_part_name]['ObjectName2'] = import_obj.get('ObjectName')
-                                    new_parts[mod_part_name]['ObjectPackPath2'] = import_obj_pack_obj.get('ObjectName')
+                    for match_row_name, sub_row_keys in [
+                        ('Aero', [MT_MESH, MT_SKELETAL_MESH]),
+                        ('Tire', [MT_TIRE_PYS_ASSET, MT_TIRE_PYS_ASSET_REAR]),
+                        ('Wheel', [WHEEL_L_M, WHEEL_R_M,WHEEL_DRW_L_M,WHEEL_DRW_R_M,WHEEL_R_L_W_M,WHEEL_R_R_W_M])
+                    ]:
+                        if row_name == match_row_name:
+                            for sub_row in row_val:
+                                sub_name = sub_row.get("Name")
+                                sub_value = sub_row["Value"]
 
-    index = len(final_json.get('Imports'))+1
-    final_imports = final_json.get('Imports')
-    final_serialization = final_json['Exports'][0]['CreateBeforeSerializationDependencies']
+                                for idx, entry in enumerate(sub_row_keys):
+                                    if sub_name == entry:
+                                        if sub_value!=0:
+                                            import_obj = mod_import_map[(-1)*sub_value-1]
+                                            import_obj_pack_obj =  mod_import_map[(-1)*import_obj.get('OuterIndex')-1]
 
-    def get_asset_index(index):
-        return (-1)*(index+1)
-    
-    def get_asset_outer_index_from_imports(imports, asset_name):
-        for idx, entry in enumerate(imports):
-            if entry.get("ObjectName") == asset_name:
-                return get_asset_index(idx)
+                                            assetTypeToImport = mod_import_map[(-1)*sub_value-1].get('ClassName')
+                                            assetNameToImport = import_obj.get('ObjectName')
+                                            assetPackageToImport = import_obj_pack_obj.get('ObjectName')
 
-    for new_part in new_parts:
-        part = new_parts[new_part]['Part']       
+                                            new_obj_index, final_imports = new_import(final_imports, assetNameToImport, assetTypeToImport, assetPackageToImport)
+                                            sub_row["Value"] = new_obj_index
 
-        if 'PartTypeAsset' in new_parts[new_part]:
-            partType = new_parts[new_part]['PartTypeAsset']
+                                            final_serialization.append(new_obj_index)
 
-            obj_index1 = None
-            obj_index2 = None
+                final_parts.append(mod_part)
 
-            if 'ObjectName' in new_parts[new_part]:
-                final_imports.append(new_object_import(new_parts[new_part]['ObjectName'], get_asset_index(index), MT_ASSET_MAP[partType]))
-                index+=1
-
-                obj_index1=get_asset_outer_index_from_imports(final_imports, new_parts[new_part]['ObjectName'])
-            
-            if 'ObjectPackPath' in new_parts[new_part]:
-                final_imports.append(new_package_import(new_parts[new_part]['ObjectPackPath']))
-                index+=1
-
-            if 'ObjectName2' in new_parts[new_part]:
-                final_imports.append(new_object_import(new_parts[new_part]['ObjectName2'], get_asset_index(index), MT_ASSET_MAP[partType]))
-                index+=1
-            
-                obj_index2=get_asset_outer_index_from_imports(final_imports, new_parts[new_part]['ObjectName2'])
-
-            if 'ObjectPackPath2' in new_parts[new_part]:
-                final_imports.append(new_package_import(new_parts[new_part]['ObjectPackPath2']))
-                index+=1
-
-            for row_data in part['Value']:
-                row_name = row_data.get('Name')
-                row_val = row_data.get('Value')
-                
-                if row_name == partType:
-                    row_data['Value'] = get_asset_index(index)+1
-                    final_serialization.append(get_asset_index(index)+1)
-                if row_name == 'Tire' and partType == MT_TIRE_ASSET:
-                    for sub_row in row_val:
-                        sub_row_name = sub_row.get("Name")
-                        sub_row_value = sub_row.get('Value')
-                        
-                        if sub_row_name == MT_TIRE_PYS_ASSET and obj_index1:
-                            sub_row['Value'] = obj_index1
-                            final_serialization.append(obj_index1)
-
-                        if sub_row_name == MT_TIRE_PYS_ASSET_REAR and obj_index2:
-                            sub_row['Value'] = obj_index2
-                            final_serialization.append(obj_index2)
-        
-        final_parts.append(part)
-
-    final_json['Exports'][0]['CreateBeforeSerializationDependencies'] = final_serialization
+    final_json['Imports'] = final_imports
+    final_json['Exports'][0]['CreateBeforeSerializationDependencies'] = list(dict.fromkeys(final_serialization))
     final_json['Exports'][0]['Table']['Data'] = final_parts
 
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(json.dumps(final_json, indent=4))
-
 
 
 
@@ -377,6 +367,26 @@ def run_uasset_tojson(uasset_path):
         except subprocess.CalledProcessError as e:
             log.write(f"[UAssetGUI] Failed {uasset_path} with code {e.returncode}\n")
 
+def run_fromjson_to_uasset(json_path):
+    base_name = json_path
+    uasset_output = json_path.replace('.json', '.uasset')
+    cmd = [
+        UASSET_GUI_PATH,
+        'fromjson',
+        base_name,
+        uasset_output,
+        MAPPINGS
+    ]
+    print(' '.join(cmd))
+    log_file = os.path.join(LOG_FILE)
+    with open(log_file, "a") as log:
+        try:
+            log.write(f"[UAssetGUI] Running: {' '.join(cmd)}\n")
+            subprocess.run(cmd, check=True, stdout=log, stderr=log)
+            log.write(f"[UAssetGUI] Created Uasset for {base_name}\n")
+        except subprocess.CalledProcessError as e:
+            log.write(f"[UAssetGUI] Failed {base_name} with code {e.returncode}\n")
+
 
 def extract_single_asset(pak_file, asset_path, has_ubulk=False, dest_dir="."):
     os.makedirs(dest_dir, exist_ok=True)
@@ -480,16 +490,21 @@ if __name__ == "__main__":
                         mod_json_files.append(mod_json_path)
 
                 base_uasset_path = os.path.join(BASE_GAME_DATA, 'MotorTown', 'Content',  conflict_rel_path)
+                
                 base_json_path = base_uasset_path.replace(".uasset", ".json")
                 run_uasset_tojson(base_uasset_path)
                 output_json_path = os.path.join(FIX_MOD_PATH, conflict_rel_path).replace(".uasset", ".json")
-
+                
+                json_file = os.path.join(FIX_MOD_NAME, conflict_rel_path.replace(".uasset", ".json"))
                 if os.path.exists(base_json_path) and mod_json_files:
                     os.makedirs(os.path.dirname(output_json_path), exist_ok=True)
                     solve_conflict_with_base(base_json_path, mod_json_files, conflict_type, output_json_path)
-                    print(f"[{conflict_type}] Conflict merged -> {output_json_path}")
+                    run_fromjson_to_uasset(json_file)
+                    print(f"[{conflict_type}] Conflict merged -> {json_file.replace('.json', '.uasset')}")
+                    os.remove(output_json_path)
                 else:
-                    print(f"[{conflict_type}] Skipped. Missing base or mod JSONs.")
+                    print(f"[{conflict_type}] Skipped. Missing base or mod JSONs")
+
 
         for mod_folder in mod_asset_map.keys():
             abs_mod_folder = os.path.abspath(mod_folder)

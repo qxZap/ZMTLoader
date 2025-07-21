@@ -565,6 +565,16 @@
       "has_ubulk": false
     }
   ],
+  "Z_AnotherHeadlightmod_P": [
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\Z_AnotherHeadlightmod_P\\MotorTown\\Content\\Cars\\Models\\Cora\\Headlight_022.uasset",
+      "has_ubulk": true
+    },
+    {
+      "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\Z_AnotherHeadlightmod_P\\MotorTown\\Content\\DataAsset\\VehicleParts\\Headlights.uasset",
+      "has_ubulk": false
+    }
+  ],
   "Z_TehsEngineSoundPackCompatibilityMoreTuning_P": [
     {
       "uasset": "D:\\MT\\ZMTLoader\\ZMTLoader\\Z_TehsEngineSoundPackCompatibilityMoreTuning_P\\MotorTown\\Content\\Cars\\Parts\\Engine\\Bigblock_V8.uasset",

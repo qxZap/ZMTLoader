@@ -37,5 +37,9 @@
   "Cars/Parts/Engine/Sound/LightDiesel/SC_LightDiesel.uasset": [
     "Pidoras_engeen_P",
     "qxZap_MoreTuning_P"
+  ],
+  "DataAsset/VehicleParts/Headlights.uasset": [
+    "qxZap_MoreTuning_P",
+    "Z_AnotherHeadlightmod_P"
   ]
 }

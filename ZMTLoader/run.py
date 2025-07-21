@@ -483,8 +483,6 @@ def run_fromjson_to_uasset(json_path):
 
 
 def extract_single_asset(pak_file, asset_path, has_ubulk=False, dest_dir="."):
-    os.makedirs(dest_dir, exist_ok=True)
-
     asset_no_ext = os.path.splitext(asset_path)[0]  # Remove any accidental extension
 
     for ext in [".uasset", ".uexp", ".ubulk"]:
@@ -505,6 +503,7 @@ def remove_mods(mods):
 if __name__ == "__main__":
     remove_log_file()
     mods = getModFiles(DEFAULT_PATH_MODS)
+    # TODO: if & in mod name, change it. FORCEFULLY
     base_files = getBaseFiles(DEFAULT_PATH_MODS)
 
     if len(base_files) == 0:
@@ -522,8 +521,6 @@ if __name__ == "__main__":
         print("ZMT: Mods have not changed. Game will now start")
         start_game()
         sys.exit(1)
-    else:
-        write_file_shas(shas)
 
     print("Copying all .pak files to working directory...")
     for pak in mods + base_files:
@@ -583,6 +580,7 @@ if __name__ == "__main__":
             print(f"Warning: Expected exactly one base pak file but found {len(base_files)}. Cannot extract base assets reliably.")
         else:
             base_pak = base_files[0]
+            os.makedirs(BASE_GAME_DATA, exist_ok=True)
 
             # For each known conflict, extract base assets first, then convert and merge
             for conflict_rel_path, conflict_type in KNOWN_CONFLICTS.items():
@@ -630,7 +628,10 @@ if __name__ == "__main__":
         for base_file in base_files:
             os.remove(base_file)
         
-        shutil.rmtree(BASE_GAME_DATA)
+        try:
+            shutil.rmtree(BASE_GAME_DATA)
+        except Exception:
+            pass
 
         target_path = os.path.join(FIX_MOD_NAME, *MT_PATH_CONTENT)
         os.makedirs(target_path, exist_ok=True)
@@ -657,6 +658,7 @@ if __name__ == "__main__":
                 shutil.move(src, dst)
     
     print("ZMTLoader finished working, starting the game")
+    write_file_shas(shas)
     start_game()
 
 

@@ -14,9 +14,8 @@ or unzip the archive there.
 
 ## Currently Supported Conflict Resolutions
 
-Full DataAssets/VehicleParts (engines, transmissions, etc)
-
-Decals
+- Full DataAssets/VehicleParts (engines, transmissions, etc)
+- Decals
 
 ## Usage
 

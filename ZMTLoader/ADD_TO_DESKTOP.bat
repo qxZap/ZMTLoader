@@ -1,16 +1,19 @@
 @echo off
 setlocal
 
-REM Get the current directory
+REM Get paths
 set "current_dir=%cd%"
-
-REM Get the user's desktop path
 set "desktop=%USERPROFILE%\Desktop"
+set "target=%current_dir%\ZMTLoader.exe"
+set "shortcut=%desktop%\ZMTLoader.lnk"
 
-REM Copy ZMTLoader.exe to desktop
-copy "%current_dir%\ZMTLoader.exe" "%desktop%\" /Y
+REM Create the shortcut using PowerShell
+powershell -nologo -command ^
+  "$s=(New-Object -COM WScript.Shell).CreateShortcut('%shortcut%');" ^
+  "$s.TargetPath='%target%';" ^
+  "$s.WorkingDirectory='%current_dir%';" ^
+  "$s.WindowStyle=1;" ^
+  "$s.Save()"
 
-REM Run the copied ZMTLoader.exe from the desktop
-start "" "%desktop%\ZMTLoader.exe"
-
-endlocal
+echo Shortcut created on Desktop.
+pause

@@ -8,6 +8,7 @@ import hashlib
 import subprocess
 import threading
 from multiprocessing import cpu_count
+from concurrent.futures import ThreadPoolExecutor
 
 # Constants
 num_threads = max(1, cpu_count() // 2)
@@ -358,8 +359,17 @@ def getFiles(path):
 
 
 def getModFiles(path):
-    return [file for file in getFiles(path) if file.endswith('_P.pak') and not file.startswith(MOD_GENERATE_PREFIX)]
-
+    files = []
+    for file in getFiles(path):
+        if file.endswith('_P.pak') and not file.startswith(MOD_GENERATE_PREFIX):
+            fixed_name = file.replace('&', '_and_')
+            if fixed_name != file:
+                src = os.path.join(path, file)
+                dst = os.path.join(path, fixed_name)
+                os.rename(src, dst)
+                file = fixed_name
+            files.append(file)
+    return files
 
 def getBaseFiles(path):
     return [file for file in getFiles(path) if not file.endswith('_P.pak')]
@@ -582,22 +592,14 @@ if __name__ == "__main__":
             base_pak = base_files[0]
             os.makedirs(BASE_GAME_DATA, exist_ok=True)
 
-            # For each known conflict, extract base assets first, then convert and merge
-            for conflict_rel_path, conflict_type in KNOWN_CONFLICTS.items():
-                # Extract base asset (.uasset and optionally .ubulk)
-                has_ubulk = False  # Assume False, can be refined if needed
-                # Check if ubulk file exists in base pak or mod asset lookup, rough check:
+            def process_conflict(conflict_rel_path):
+                conflict_type = KNOWN_CONFLICTS[conflict_rel_path]
+                has_ubulk = False
                 base_asset_name = conflict_rel_path.replace('.uasset', '')
                 base_ubulk_path = base_asset_name + '.ubulk'
-                # You could enhance this check if you want to confirm ubulk presence
-
-                # Extract vanilla asset files to BASE_GAME_DATA folder
-                extract_single_asset(base_pak, 'MotorTown/Content/'+conflict_rel_path, has_ubulk, dest_dir=BASE_GAME_DATA)
-
-                # After extraction, run json conversion on base asset
+                extract_single_asset(base_pak, 'MotorTown/Content/' + conflict_rel_path, has_ubulk, dest_dir=BASE_GAME_DATA)
                 base_uasset_full_path = os.path.join(BASE_GAME_DATA, conflict_rel_path)
                 run_uasset_tojson(base_uasset_full_path)
-
                 mod_json_files = []
                 for mod_folder in conflicts.get(conflict_rel_path, []):
                     mod_uasset_path = os.path.join(mod_folder, 'MotorTown', 'Content', conflict_rel_path)
@@ -605,20 +607,22 @@ if __name__ == "__main__":
                     run_uasset_tojson(mod_uasset_path)
                     if os.path.exists(mod_json_path):
                         mod_json_files.append(mod_json_path)
-
-                base_uasset_path = os.path.join(BASE_GAME_DATA, 'MotorTown', 'Content',  conflict_rel_path)
-                
+                base_uasset_path = os.path.join(BASE_GAME_DATA, 'MotorTown', 'Content', conflict_rel_path)
                 base_json_path = base_uasset_path.replace(".uasset", ".json")
                 run_uasset_tojson(base_uasset_path)
                 output_json_path = os.path.join(FIX_MOD_PATH, conflict_rel_path).replace(".uasset", ".json")
-                
                 json_file = os.path.join(FIX_MOD_NAME, conflict_rel_path.replace(".uasset", ".json"))
                 if os.path.exists(base_json_path) and mod_json_files:
                     os.makedirs(os.path.dirname(output_json_path), exist_ok=True)
                     solve_conflict_with_base(base_json_path, mod_json_files, conflict_type, output_json_path)
                     run_fromjson_to_uasset(json_file)
                     os.remove(output_json_path)
-                    conflicts_solved+=1
+                    return 1
+                return 0
+
+            with ThreadPoolExecutor(max_workers=num_threads) as executor:
+                results = list(executor.map(process_conflict, KNOWN_CONFLICTS.keys()))
+            conflicts_solved = sum(results)
 
         for mod_folder in mod_asset_map.keys():
             abs_mod_folder = os.path.abspath(mod_folder)

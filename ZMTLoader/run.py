@@ -696,9 +696,22 @@ if __name__ == "__main__":
 
                 return 0
 
-            with ThreadPoolExecutor(max_workers=num_threads) as executor:
-                results = list(executor.map(process_conflict, KNOWN_CONFLICTS.keys()))
-            conflicts_solved = sum(results)
+            # WARNING: this is for multithreaded that is faster but is buggy. Do not use unless you know what you are doing
+            # with ThreadPoolExecutor(max_workers=num_threads) as executor:
+            #     results = list(executor.map(process_conflict, KNOWN_CONFLICTS.keys()))
+            # conflicts_solved = sum(results)
+
+            conflicts_solved = 0
+            max_conflicts_to_solve = len(KNOWN_CONFLICTS)
+
+            for idx, conflict in enumerate(KNOWN_CONFLICTS.keys(), start=1):
+                result = process_conflict(conflict)
+                conflicts_solved += result
+                if result:
+                    progress = (idx / max_conflicts_to_solve) * 100
+                    print(
+                        f'CONFLICT SOLVED | ({progress:.2f}%) | {conflict}'
+                    )
 
         for mod_folder in mod_asset_map.keys():
             abs_mod_folder = os.path.abspath(mod_folder)

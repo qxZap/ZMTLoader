@@ -1,0 +1,50 @@
+# Push a branch named release/<version> (release/1.0, ...) and this builds the plugin from that branch on GitHub's
+# machine, runs the tests, and publishes the GitHub release v<version>: the drag-and-drop zip, the bare DLL and their
+# SHA-256. Pushing the branch again rebuilds it. Ordinary pushes build nothing.
+name: release
+on:
+  push:
+    branches: ["release/**"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and test
+        shell: cmd
+        run: build.bat
+      - name: Package
+        shell: pwsh
+        run: |
+          $v = "${{ github.ref_name }}" -replace '^release/', ''
+          $stage = "stage"
+          New-Item -ItemType Directory -Force "$stage/MotorTown/Binaries/Win64/plugins" | Out-Null
+          Copy-Item out/mt_plugin_ZMTLoader.dll "$stage/MotorTown/Binaries/Win64/plugins/"
+          Copy-Item dist/README.txt $stage
+          $zip = "ZMT-Loader-$v.zip"
+          Compress-Archive -Path "$stage/*" -DestinationPath $zip
+          Copy-Item out/mt_plugin_ZMTLoader.dll mt_plugin_ZMTLoader.dll
+          Get-FileHash mt_plugin_ZMTLoader.dll, $zip -Algorithm SHA256 | ForEach-Object { "$($_.Hash.ToLower())  $(Split-Path $_.Path -Leaf)" } | Set-Content SHA256SUMS.txt
+          Get-Content SHA256SUMS.txt
+          "VERSION=$v" >> $env:GITHUB_ENV
+          "ZIP=$zip" >> $env:GITHUB_ENV
+      - uses: actions/upload-artifact@v4
+        with:
+          name: zmt-loader
+          path: |
+            ${{ env.ZIP }}
+            mt_plugin_ZMTLoader.dll
+            SHA256SUMS.txt
+      - name: Publish the release
+        if: startsWith(github.ref, 'refs/heads/release/')
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="v$VERSION"
+          gh release delete "$tag" --cleanup-tag -y || true
+          gh release create "$tag" "$ZIP" mt_plugin_ZMTLoader.dll SHA256SUMS.txt --target "$GITHUB_SHA" --title "ZMT Loader $VERSION" \
+            --notes "Built by GitHub Actions from \`$GITHUB_SHA\` on branch \`$GITHUB_REF_NAME\` ([build log]($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID)). Drag the zip's MotorTown folder into the game folder. Needs the Plugin Loader and the DataTable Framework."

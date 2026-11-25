@@ -1,15 +1,21 @@
+out/
+*.obj
+*.exp
+*.lib
+*.pak
+__pycache__/
 # Ignore extracted folders and their contents
 */_extracted_*/
-ZMTLoader/*_P
-ZMTLoader/BASE_GAME_DATA/
-ZMTLoader/build/
-ZMTLoader/dist/
-ZMTLoader/log.txt
-ZMTLoader/conflicts.json
-ZMTLoader/mod_asset_map.json
-ZMTLoader/cached_sha.json
-ZMTLoader/ZMTLoader.exe
-ZMTLoader/ZMTLoader.zip
+legacy/*_P
+legacy/BASE_GAME_DATA/
+legacy/build/
+legacy/dist/
+legacy/log.txt
+legacy/conflicts.json
+legacy/mod_asset_map.json
+legacy/cached_sha.json
+legacy/ZMTLoader.exe
+legacy/ZMTLoader.zip
 
 # Ignore all .pak files
 *.pak

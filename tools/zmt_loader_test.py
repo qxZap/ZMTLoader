@@ -49,14 +49,14 @@ def plan_tables(tables, framework):
     return out
 
 
-def fingerprint_text(paks):
-    """paks: [(name, size, mtime)]; the same text the plugin hashes."""
+def fingerprint_text(paks, off=()):
+    """paks: [(name, size, mtime)], off: paks switched off in Mods [Review]; the same text the plugin hashes."""
     lines = sorted("%s|%d|%d" % (n.lower(), s, m) for n, s, m in paks)
-    return "\n".join(["v" + CACHE_VERSION] + lines)
+    return "\n".join(["v" + CACHE_VERSION] + lines + sorted("off|" + n.lower() for n in off))
 
 
-def sha(paks):
-    return hashlib.sha256(fingerprint_text(paks).encode()).hexdigest()
+def sha(paks, off=()):
+    return hashlib.sha256(fingerprint_text(paks, off).encode()).hexdigest()
 
 
 # ---- pak index: port of Rd / gamePathOf / parseIndex / readPak in the plugin ----
@@ -245,6 +245,8 @@ def cache_tests():
     assert sha(a) != sha(a[:1])                                   # removed
     assert sha(a) != sha([("A_P.pak", 101, 5), a[1]])             # size changed
     assert sha(a) != sha([("A_P.pak", 100, 9), a[1]])             # updated (mtime)
+    assert sha(a) != sha(a, off=["b_P.pak"])                     # switched off in Mods [Review]
+    assert sha(a, off=["b_P.pak"]) == sha(a, off=["B_P.PAK"])
     assert len(sha(a)) == 64
 
 

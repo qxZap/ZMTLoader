@@ -20,7 +20,8 @@ Settings: `MotorTown\Binaries\Win64\plugins\zmt_loader.ini`, created on first la
 | | |
 |---|---|
 | `[General] Disabled=1` | turns it off |
-| `[AutoPatch] DryRun=1` | only writes what it would do, changes nothing |
+| `[AutoPatch] DryRun=1` | changes nothing in memory, only writes what it would do (and the fix pak) |
+| `[FixPak] Write=0` | no fix pak |
 
 What it did each run is in `plugins\logs\ZMTLoader\plan_<sha>.json` (tables added per list, rows before and after),
 and in the Plugin Loader's log when logging is on.
@@ -39,24 +40,18 @@ and in the Plugin Loader's log when logging is on.
 
 Everything it needs from the engine is found at runtime; if something is missing it logs once and does nothing.
 
-## Dump to a pak
+## The fix pak
 
-`tools/zmt_dump.py` turns the latest plan into `ZMTLoader_Dump_100_P.pak`: a copy of each changed framework
-composite with the added tables in its list. Chunk 100 outranks the framework's `_99_P`, so with that pak enabled the
-result holds without the plugin (and the plugin finds nothing left to add). Rerun it after changing your mods.
-
-```
-python tools/zmt_dump.py --game "D:\SteamLibrary\steamapps\common\Motor Town" ^
-    --uassetgui UAssetGUI.exe --mappings <usmap name> --repak repak [--install]
-```
-
-Needs UAssetGUI 1.1+, repak and a usmap of the current game in `%LOCALAPPDATA%\UAssetGUI\Mappings` (the Plugin Loader
-writes one with `mt_loader.ini` `[Mappings] Export=1`). A new pak starts switched off: enable it in Mods [Review].
-The pak this writes has been checked by reading it back, not yet in game.
+After each check it also writes `Content\Paks\ZMT_Output_Fix_100_P.pak`: the framework's lists with the tables it
+added, nothing else. Enable it in the main menu's Mods [Review] and the fix holds without ZMT Loader, so you can share
+that one file with friends who have the same mods. Chunk 100 outranks the framework's `_99_P`. It is rewritten only
+when something changes (while the game has it open, the new one waits as `.new` and goes in at the next start), and
+removed when nothing is left to fix. `[FixPak] Write=0` turns it off.
 
 ## Build
 
-`build.bat` (MSVC 2022 + Python 3) builds `out\mt_plugin_ZMTLoader.dll` and runs the offline tests. Releases are
+`build.bat` (MSVC 2022 + Python 3) builds `out\mt_plugin_ZMTLoader.dll` and runs the offline tests (the planner mirror, and
+`tools/zmt_fixpak_test.cpp`: name hashes, composite and pak round trips). Releases are
 built by GitHub Actions: push a branch `release/<version>` and it publishes the zip with its SHA-256.
 
 `legacy/` is the old standalone ZMT Loader (0.1-0.5), kept for reference.

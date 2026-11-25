@@ -9,5 +9,6 @@ cd /d "%~dp0"
 if not exist out\obj mkdir out\obj
 cl /nologo /O2 /MT /EHsc /std:c++17 /LD /Fo:out\obj\ plugins\zmt_loader.cpp /Fe:out\mt_plugin_ZMTLoader.dll /link /NOLOGO user32.lib || exit /b 1
 python tools\zmt_loader_test.py demo || exit /b 1
-python tools\zmt_dump.py demo || exit /b 1
+cl /nologo /O2 /MT /EHsc /std:c++17 /Fo:out\obj\ tools\zmt_fixpak_test.cpp /Fe:out\zmt_fixpak_test.exe || exit /b 1
+out\zmt_fixpak_test.exe || exit /b 1
 echo built %~dp0out

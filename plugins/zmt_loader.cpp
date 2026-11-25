@@ -25,11 +25,16 @@
 #include <vector>
 #include "../include/mt_plugin.hpp"
 #include <bcrypt.h>
+#include "zmt_fixpak.hpp"
 
 using namespace mt;
 #pragma comment(lib, "bcrypt.lib")
 
 static const wchar_t* INI = L"zmt_loader.ini";
+// The fix pak: the framework's composites with what this plugin adds, so the result holds without it (and can be
+// shared). Chunk 100 outranks the framework's _99_P. A new pak starts switched off in Mods [Review].
+static const wchar_t* FIXPAK = L"ZMT_Output_Fix_100_P.pak";
+static const char* FIXPAK_LOWER = "zmt_output_fix_100_p.pak";
 static const char* CACHE_VERSION = "2";   // 2: the cache also holds the discovered candidate paths
 
 // ===================================================================== planner (pure; no engine access)
@@ -165,13 +170,18 @@ static void listPaks(const std::wstring& dir, const std::wstring& rel, std::vect
     } while (FindNextFileW(h, &fd));
     FindClose(h);
 }
-// Same text in tools\zmt_loader_test.py: "v<version>\n" + sorted "name|size|mtime" lines joined by "\n".
+static std::set<std::wstring> disabledPaks();
+// Same text in tools\zmt_loader_test.py: "v<version>\n" + sorted "name|size|mtime" lines, then sorted "off|name" lines
+// for paks switched off in Mods [Review] (switching one on or off changes what loads), joined by "\n".
 static std::string fingerprint() {
-    std::vector<std::string> v;
+    std::vector<std::string> v, off;
     listPaks(gameDir() + L"..\\..\\Content\\Paks", L"", v);
     std::sort(v.begin(), v.end());
+    for (auto& w : disabledPaks()) off.push_back("off|" + std::string(w.begin(), w.end()));
+    std::sort(off.begin(), off.end());
     std::string t = std::string("v") + CACHE_VERSION;
     for (auto& s : v) t += "\n" + s;
+    for (auto& s : off) t += "\n" + s;
     return sha256hex(t);
 }
 
@@ -291,7 +301,7 @@ static void findPaks(const std::wstring& dir, std::vector<std::pair<std::string,
         u8.resize(strlen(u8.c_str()));
         std::string l = lowerStr(u8);   // the game's own and the framework's own are not mods
         if (l.rfind("motortown-windows", 0) == 0 || (l.size() > 18 && l.compare(l.size() - 18, 18, "-windowsserver.pak") == 0) ||
-            l.rfind("aaaa_datatableframework", 0) == 0) continue;
+            l.rfind("aaaa_datatableframework", 0) == 0 || l == FIXPAK_LOWER) continue;
         out.push_back({l, dir + L"\\" + n});
     } while (FindNextFileW(h, &fd));
     FindClose(h);
@@ -683,6 +693,83 @@ static void writePlan(const std::string& sha, bool hit, const std::map<std::stri
     writeFile(logsDir() + L"plan_" + std::wstring(sha.begin(), sha.end()) + L".json", o + "\n }\n}\n");
 }
 
+// ===================================================================== fix pak
+static bool fixPak = true;
+static std::wstring paksDir() { return gameDir() + L"..\\..\\Content\\Paks\\"; }
+// The game keeps a mounted pak open, so a fix pak written while the old one was mounted waits as .new (or a .remove
+// marker) and is put in place here, at the next start.
+static void fixPakPending() {
+    std::wstring p = paksDir() + FIXPAK, n = p + L".new", rm = p + L".remove";
+    if (GetFileAttributesW(n.c_str()) != INVALID_FILE_ATTRIBUTES) {
+        if (MoveFileExW(n.c_str(), p.c_str(), MOVEFILE_REPLACE_EXISTING)) MT_LOG("ZMT Loader: fix pak updated from the last run");
+        else MT_LOG("ZMT Loader: could not put the new fix pak in place (error %lu), trying again next start", GetLastError());
+    }
+    if (GetFileAttributesW(rm.c_str()) != INVALID_FILE_ATTRIBUTES) {
+        if (DeleteFileW(p.c_str()) || GetLastError() == ERROR_FILE_NOT_FOUND) { DeleteFileW(rm.c_str()); MT_LOG("ZMT Loader: fix pak removed (nothing left to fix)"); }
+    }
+}
+static bool putFile(const std::wstring& p, const fixpak::Bytes& b) {
+    HANDLE h = CreateFileW(p.c_str(), GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, 0, nullptr);
+    if (h == INVALID_HANDLE_VALUE) return false;
+    DWORD n = 0; bool ok = WriteFile(h, b.data(), (DWORD)b.size(), &n, nullptr) && n == b.size();
+    CloseHandle(h);
+    if (!ok) DeleteFileW(p.c_str());
+    return ok;
+}
+// Per framework composite: the framework's own parents (read from its pak) + every table the composite has now that
+// the framework does not list (what this run added, and what an enabled fix pak added before). Written only if the
+// bytes differ from the pak already there.
+static void writeFixPak(const std::map<std::string, Result>& res) {
+    using namespace fixpak;
+    std::vector<std::pair<std::string, std::wstring>> all;
+    WIN32_FIND_DATAW fd; HANDLE fh = FindFirstFileW((paksDir() + L"*.pak").c_str(), &fd);
+    if (fh != INVALID_HANDLE_VALUE) {
+        do { std::wstring n = fd.cFileName; std::string l(n.begin(), n.end()); l = lowerStr(l);
+             if (l.rfind("aaaa_datatableframework", 0) == 0) all.push_back({l, paksDir() + n}); } while (FindNextFileW(fh, &fd));
+        FindClose(fh);
+    }
+    if (all.empty()) { MT_LOG("ZMT Loader: fix pak: no DataTable Framework pak found, not written"); return; }
+    std::sort(all.begin(), all.end());
+    bool ok; Bytes fwPak = readAll(all.back().second, ok);
+    std::map<std::string, Bytes> fw; std::string why;
+    if (!ok || !readPakFiles(fwPak, fw, why)) { MT_LOG("ZMT Loader: fix pak: cannot read %s (%s), not written", all.back().first.c_str(), why.c_str()); return; }
+    std::vector<std::pair<std::string, Bytes>> files;
+    int nComp = 0, nTab = 0;
+    for (auto& [id, r] : res) {
+        size_t d = id.rfind('.'); if (d == std::string::npos) continue;
+        std::string base = pakPath(id.substr(0, d));
+        auto ua = fw.find(base + ".uasset"), ue = fw.find(base + ".uexp");
+        if (ua == fw.end() || ue == fw.end()) continue;
+        Composite c;
+        if (!parseComposite(ua->second, ue->second, c, why)) { MT_LOG("ZMT Loader: fix pak: %s skipped: %s", id.c_str(), why.c_str()); continue; }
+        std::set<std::string> listed; for (auto& t : c.parents) listed.insert(t.pkg + "." + t.name);
+        int extra = 0;
+        for (auto& t : r.pc.after.empty() ? r.pc.before : r.pc.after) {
+            size_t k = t.rfind('.');
+            if (t.empty() || k == std::string::npos || t == id || !listed.insert(t).second) continue;
+            c.parents.push_back({t.substr(0, k), t.substr(k + 1), findTable(t, true) ? "CompositeDataTable" : "DataTable"});
+            extra++;
+        }
+        if (!extra) continue;
+        Bytes a, e; buildComposite(c, a, e);
+        files.push_back({base + ".uasset", a}); files.push_back({base + ".uexp", e});
+        nComp++; nTab += extra;
+    }
+    std::wstring p = paksDir() + FIXPAK;
+    bool have = GetFileAttributesW(p.c_str()) != INVALID_FILE_ATTRIBUTES;
+    if (files.empty()) {
+        if (have && !DeleteFileW(p.c_str())) { putFile(p + L".remove", {}); MT_LOG("ZMT Loader: fix pak no longer needed, removed at the next start"); }
+        else if (have) MT_LOG("ZMT Loader: fix pak no longer needed, removed");
+        return;
+    }
+    Bytes pak = writePak(files);
+    if (have && readAll(p, ok) == pak && ok) { MT_LOG("ZMT Loader: fix pak up to date (%d composites, %d tables)", nComp, nTab); return; }
+    DeleteFileW((p + L".remove").c_str());
+    if (putFile(p, pak)) MT_LOG("ZMT Loader: wrote %ls: %d composites, %d tables -- enable it in Mods [Review]; it works without ZMT Loader", FIXPAK, nComp, nTab);
+    else if (putFile(p + L".new", pak)) MT_LOG("ZMT Loader: fix pak in use; the new one (%d composites, %d tables) takes its place at the next start", nComp, nTab);
+    else MT_LOG("ZMT Loader: could not write %ls (error %lu)", FIXPAK, GetLastError());
+}
+
 // ===================================================================== thread
 static DWORD WINAPI run(LPVOID) {
     if (!api->wait_engine(600000) || !resolve()) return 0;
@@ -783,6 +870,11 @@ static DWORD WINAPI run(LPVOID) {
     int n = 0; for (auto& [k, r] : results) n += (int)r.pc.added.size();
     writeCache(sha, cands, results);
     MT_LOG("ZMT Loader: %d composites, %d tables %s (plan_%s.json)", (int)results.size(), n, dryRun ? "planned (dry run)" : "added", sha.c_str());
+    if (fixPak) {
+        QueryPerformanceCounter(&t0);
+        writeFixPak(results);
+        QueryPerformanceCounter(&t1); MT_LOG("ZMT Loader: fix pak %.1f ms", ms(t0, t1));
+    }
     return 0;
 }
 
@@ -791,6 +883,8 @@ extern "C" __declspec(dllexport) int PluginInit(const MtApi* a) {
     if (iniDisabled(INI)) return 0;
     { wchar_t exe[MAX_PATH] = {}; GetModuleFileNameW(nullptr, exe, MAX_PATH); dedicated = wcsstr(exe, L"MotorTownServer") != nullptr; }
     dryRun = iniInt(INI, L"AutoPatch", L"DryRun", 0) != 0;
+    fixPak = iniInt(INI, L"FixPak", L"Write", 1) != 0;
+    if (fixPak) fixPakPending();
     CloseHandle(CreateThread(nullptr, 0, run, nullptr, 0, nullptr));
     return 0;
 }
